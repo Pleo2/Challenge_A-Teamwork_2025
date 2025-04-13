@@ -1,11 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import '../styles/globals.css';
+import MainLayout from "../layouts/MainLayout.astro";
+import "../styles/globals.css";
+
+const pageTitle = "Mi Landing Page Optimizada para SEO";
+const pageDescription =
+    "Descubre cómo esta landing page ahora tiene mejores meta tags para SEO y redes sociales.";
+// Imagen para compartir (colócala en public/images/landing-social.png)
+const shareImage = "/images/landing-social.png";
 ---
 
-<Layout>
-	<!-- <Welcome /> -->
-</Layout>
+<MainLayout
+    title={pageTitle}
+    description={pageDescription}
+    image={shareImage}
+    >
+    <h1>Bienvenido a mi Landing Page</h1>
+</MainLayout>
 
-<style>
-</style>
+<style></style>

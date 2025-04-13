@@ -15,6 +15,54 @@
     font-style: normal;
 }
 
+  /*
+ * Settings for the root element (HTML)
+ * 1. Base height for the body to correctly use min-height: 100vh.
+ * 2. Smooth scroll behavior for anchor links (#).
+ * 3. Base font size:
+ *    - Option A (Recommended for easier rem calculations): 62.5% makes 1rem = 10px (16px * 0.625 = 10px).
+ *    - Option B (Standard): 100% keeps 1rem = 16px (or the default browser size).
+ * 4. Prevents automatic text size adjustments on mobile (iOS).
+ */
+ html {
+    height: 100%; /* 1 */
+    scroll-behavior: smooth; /* 2 */
+    font-size: 62.5%; /* 3 - Option A */
+    /* font-size: 100%; */ /* 3 - Option B (comment the previous line if using this) */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    text-size-adjust: 100%; /* 4 */
+}
+
+/*
+* Body settings
+* 1. Ensures the body takes at least the full viewport height.
+*    Important for sticky footers or full background coverage.
+* 2. Removes the browser's default margin on the body.
+* 3. Sets a common, legible base font (sans-serif stack).
+* 4. Sets a base line-height for improved readability.
+* 5. Sets a base text color.
+* 6. Base background color (optional, define as desired).
+* 7. Enables anti-aliasing for smoother fonts (in supported browsers).
+* 8. (Optional) Prevents accidental horizontal overflow. Use with caution.
+*/
+body {
+    min-height: 100vh; /* 1 */ /* vh is relative to the viewport, more robust than height: 100% here */
+    margin: 0; /* 2 */
+    font-family:
+        Roboto,
+        system-ui,
+        -apple-system,
+        sans-serif; /* 3 */
+    line-height: 1.6; /* 4 */
+    color: #333; /* 5 - A common dark gray */
+    background-color: #fff; /* 6 - Default white */
+    -webkit-font-smoothing: antialiased; /* 7 */
+    -moz-osx-font-smoothing: grayscale; /* 7 */
+    overflow-x: hidden; /* 8 - Optional, use with caution */
+}
+
+
+
 /*
  * 1. Box Sizing: Changes the box model so that padding and border are included
  *    in the total element width/height. Greatly simplifies layout.
@@ -28,50 +76,6 @@
     box-sizing: border-box; /* 1 */
     /* margin: 0; */ /* 2 - Uncomment if you need a more aggressive reset */
     /* padding: 0; */ /* 2 - Uncomment if you need a more aggressive reset */
-}
-
-/*
- * Settings for the root element (HTML)
- * 1. Base height for the body to correctly use min-height: 100vh.
- * 2. Smooth scroll behavior for anchor links (#).
- * 3. Base font size:
- *    - Option A (Recommended for easier rem calculations): 62.5% makes 1rem = 10px (16px * 0.625 = 10px).
- *    - Option B (Standard): 100% keeps 1rem = 16px (or the default browser size).
- * 4. Prevents automatic text size adjustments on mobile (iOS).
- */
-html {
-    height: 100%; /* 1 */
-    scroll-behavior: smooth; /* 2 */
-    font-size: 62.5%; /* 3 - Option A */
-    /* font-size: 100%; */ /* 3 - Option B (comment the previous line if using this) */
-    -webkit-text-size-adjust: 100%; /* 4 */
-    text-size-adjust: 100%; /* 4 */
-}
-
-/*
- * Body settings
- * 1. Ensures the body takes at least the full viewport height.
- *    Important for sticky footers or full background coverage.
- * 2. Removes the browser's default margin on the body.
- * 3. Sets a common, legible base font (sans-serif stack).
- * 4. Sets a base line-height for improved readability.
- * 5. Sets a base text color.
- * 6. Base background color (optional, define as desired).
- * 7. Enables anti-aliasing for smoother fonts (in supported browsers).
- * 8. (Optional) Prevents accidental horizontal overflow. Use with caution.
- */
-body {
-    min-height: 100vh; /* 1 */ /* vh is relative to the viewport, more robust than height: 100% here */
-    margin: 0; /* 2 */
-    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-        sans-serif; /* 3 */
-    line-height: 1.6; /* 4 */
-    color: #333; /* 5 - A common dark gray */
-    background-color: #fff; /* 6 - Default white */
-    -webkit-font-smoothing: antialiased; /* 7 */
-    -moz-osx-font-smoothing: grayscale; /* 7 */
-    /* overflow-x: hidden; */ /* 8 - Uncomment if you have unexpected horizontal scrolling issues */
 }
 
 /* Basic rules for responsive images */
