@@ -1,0 +1,76 @@
+<>
+    <img
+        src="/assets/Rounded shape.webp"
+        alt="Hero Image"
+        class="rounded-shape-1"
+    />
+    <img
+        src="/assets/Rounded shape.webp"
+        alt="Hero Image"
+        class="rounded-shape-2"
+    />
+</>
+
+<style>
+    .rounded-shape-1 {
+        position: absolute;
+        top: 10rem;
+        right: -7vw;
+        width: 15rem;
+        height: 15rem;
+        object-fit: cover;
+        animation: rotateAnimation 20s linear infinite;
+        opacity: 0.9;
+    }
+
+    .rounded-shape-2 {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .rounded-shape-1 {
+            position: absolute;
+            top: -7dvh;
+            right: -17vw;
+            width: 40vw;
+            height: 40vw;
+            object-fit: cover;
+            animation: rotateAnimation 20s linear infinite;
+            opacity: 0.9;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .rounded-shape-1 {
+            position: absolute;
+            top: -12rem;
+            right: -5vw;
+            width: 30rem;
+            height: 30rem;
+            object-fit: cover;
+            animation: rotateAnimation 20s linear infinite;
+            opacity: 0.9;
+        }
+
+        .rounded-shape-2 {
+            display: block;
+            position: absolute;
+            bottom: -30vh;
+            right: 10vw;
+            width: 60rem;
+            height: 60rem;
+            object-fit: cover;
+            opacity: 0.8;
+            animation: rotateAnimation 20s linear infinite;
+        }
+    }
+
+    @keyframes rotateAnimation {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>

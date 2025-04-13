@@ -1,26 +1,31 @@
-<section class="hero-container">
-    <img
-        src="/assets/Rounded shape.webp"
-        alt="Hero Image"
-        class="rounded-shape-1"
-    />
+---
+import RoundedShape from "./RoundedShape.astro";
+---
 
-    <img
-        src="/assets/Rounded shape.webp"
-        alt="Hero Image"
-        class="rounded-shape-2"
-    />
+<section class="hero-container">
+    <RoundedShape />
+    <div class="hero-content">
+        <div class="main-contend">
+            <h2></h2>
+            <h1></h1>
+            <h3></h3>
+            <button></button>
+        </div>
+        <div class="image-container"></div>
+    </div>
 </section>
 
 <style>
     .hero-container {
         background-color: var(--color-bg-primary);
-        height: 100vh;
+        height: 100dvh;
         color: var(--color-white);
-        padding: 2rem;
+        padding: 3rem;
         text-align: center;
         position: relative;
         overflow: hidden;
+        display: flex;
+        flex-basis: 1;
     }
 
     .hero-container::before {
@@ -49,34 +54,33 @@
         filter: blur(6rem);
     }
 
-    .rounded-shape-1 {
-        position: absolute;
-        top: 10rem;
-        right: -7vw;
-        width: 15rem;
-        height: 15rem;
-        object-fit: cover;
-        animation: rotateAnimation 20s linear infinite;
-        opacity: 0.9;
+    .hero-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        /* background-color: bisque; */
+        height: 100%;
+        width: 100%;
     }
 
-    .rounded-shape-2 {
-        display: none;
+    .main-contend {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+    }
+
+    .image-container {
+        display: hidden;
     }
 
     /* tablet style */
     @media (min-width: 768px) {
-        .rounded-shape-1 {
-            position: absolute;
-            top: -7dvh;
-            right: -17vw;
-            width: 40vw;
-            height: 40vw;
-            object-fit: cover;
-            animation: rotateAnimation 20s linear infinite;
-            opacity: 0.9;
-        }
-
         .hero-container::after {
             content: " ";
             position: absolute;
@@ -117,38 +121,6 @@
             background-color: var(--color-dark-accent);
             border-radius: 9999px;
             filter: blur(12rem);
-        }
-
-        .rounded-shape-1 {
-            position: absolute;
-            top: -12rem;
-            right: -5vw;
-            width: 30rem;
-            height: 30rem;
-            object-fit: cover;
-            animation: rotateAnimation 20s linear infinite;
-            opacity: 0.9;
-        }
-
-        .rounded-shape-2 {
-            display: block;
-            position: absolute;
-            bottom: -30vh;
-            right: 10vw;
-            width: 60rem;
-            height: 60rem;
-            object-fit: cover;
-            opacity: 0.8;
-            animation: rotateAnimation 20s linear infinite;
-        }
-    }
-
-    @keyframes rotateAnimation {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
         }
     }
 </style>
