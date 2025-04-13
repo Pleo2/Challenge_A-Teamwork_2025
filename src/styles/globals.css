@@ -1,6 +1,6 @@
 @import "normalize.css";
 
-/* set up font local */
+/* Local font configuration */
 @font-face {
     font-family: "Roboto";
     src: url("/fonts/Roboto-VariableFont_wdth,wght.ttf")
@@ -16,79 +16,79 @@
 }
 
 /*
- * 1. Box Sizing: Cambia el modelo de caja para que padding y border
- * se incluyan en el ancho/alto total del elemento. Facilita mucho el layout.
- * 2. Eliminar márgenes/padding por defecto que normalize.css podría no quitar (opcional, normalize ya hace mucho).
+ * 1. Box Sizing: Changes the box model so that padding and border are included
+ *    in the total element width/height. Greatly simplifies layout.
+ * 2. Remove default margins/padding that normalize.css might not clear (optional,
+ *    normalize does most of this already).
  */
 
 *,
 *::before,
 *::after {
     box-sizing: border-box; /* 1 */
-    /* margin: 0; */ /* 2 - Descomentar si necesitas un reset más agresivo */
-    /* padding: 0; */ /* 2 - Descomentar si necesitas un reset más agresivo */
+    /* margin: 0; */ /* 2 - Uncomment if you need a more aggressive reset */
+    /* padding: 0; */ /* 2 - Uncomment if you need a more aggressive reset */
 }
 
 /*
- * Configuraciones para el elemento raíz (HTML)
- * 1. Altura base para que el body pueda usar min-height: 100vh correctamente.
- * 2. Comportamiento de scroll suave para anclas (#).
- * 3. Base del tamaño de fuente:
- * - Opción A (Recomendada para REMs fáciles): 62.5% hace que 1rem = 10px (16px * 0.625 = 10px).
- * - Opción B (Estándar): 100% mantiene 1rem = 16px (o el tamaño por defecto del navegador).
- * 4. Previene el ajuste automático del tamaño del texto en móviles (iOS).
+ * Settings for the root element (HTML)
+ * 1. Base height for the body to correctly use min-height: 100vh.
+ * 2. Smooth scroll behavior for anchor links (#).
+ * 3. Base font size:
+ *    - Option A (Recommended for easier rem calculations): 62.5% makes 1rem = 10px (16px * 0.625 = 10px).
+ *    - Option B (Standard): 100% keeps 1rem = 16px (or the default browser size).
+ * 4. Prevents automatic text size adjustments on mobile (iOS).
  */
 html {
     height: 100%; /* 1 */
     scroll-behavior: smooth; /* 2 */
-    font-size: 62.5%; /* 3 - Opción A */
-    /* font-size: 100%; */ /* 3 - Opción B (comenta la línea anterior si usas esta) */
+    font-size: 62.5%; /* 3 - Option A */
+    /* font-size: 100%; */ /* 3 - Option B (comment the previous line if using this) */
     -webkit-text-size-adjust: 100%; /* 4 */
     text-size-adjust: 100%; /* 4 */
 }
 
 /*
- * Configuraciones para el Body
- * 1. Asegura que el body ocupe al menos toda la altura de la ventana gráfica (viewport).
- * Importante para footers pegajosos (sticky footers) o fondos completos.
- * 2. Elimina el margen por defecto que aplican los navegadores al body.
- * 3. Establece una fuente base legible y común (stack sans-serif).
- * 4. Establece una altura de línea base para mejorar legibilidad.
- * 5. Establece un color de texto base.
- * 6. Color de fondo base (opcional, puedes definirlo donde prefieras).
- * 7. Habilita el antialiasing para fuentes más suaves (en navegadores que lo soportan).
- * 8. (Opcional) Previene el desbordamiento horizontal accidental. Úsalo con cuidado.
+ * Body settings
+ * 1. Ensures the body takes at least the full viewport height.
+ *    Important for sticky footers or full background coverage.
+ * 2. Removes the browser's default margin on the body.
+ * 3. Sets a common, legible base font (sans-serif stack).
+ * 4. Sets a base line-height for improved readability.
+ * 5. Sets a base text color.
+ * 6. Base background color (optional, define as desired).
+ * 7. Enables anti-aliasing for smoother fonts (in supported browsers).
+ * 8. (Optional) Prevents accidental horizontal overflow. Use with caution.
  */
-
 body {
-    min-height: 100vh; /* 1 */ /* vh es relativo al viewport, más robusto que height: 100% aquí */
+    min-height: 100vh; /* 1 */ /* vh is relative to the viewport, more robust than height: 100% here */
     margin: 0; /* 2 */
     font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
         sans-serif; /* 3 */
     line-height: 1.6; /* 4 */
-    color: #333; /* 5 - Un gris oscuro es común */
-    background-color: #fff; /* 6 - Blanco por defecto */
+    color: #333; /* 5 - A common dark gray */
+    background-color: #fff; /* 6 - Default white */
     -webkit-font-smoothing: antialiased; /* 7 */
     -moz-osx-font-smoothing: grayscale; /* 7 */
-    /* overflow-x: hidden; */ /* 8 - Descomentar si tienes problemas de scroll horizontal inesperado */
+    /* overflow-x: hidden; */ /* 8 - Uncomment if you have unexpected horizontal scrolling issues */
 }
 
-/* Reglas básicas para imágenes responsive  */
+/* Basic rules for responsive images */
 img,
 picture,
 video,
 canvas,
 svg {
-    display: block; /* Evita espacio extra debajo de las imágenes */
-    max-width: 100%; /* Asegura que no se desborden de su contenedor */
-    height: auto; /* Mantiene la proporción al escalar el ancho */
+    display: block; /* Prevents extra space below images */
+    max-width: 100%; /* Ensures they don't overflow their container */
+    height: auto; /* Maintains aspect ratio when scaling width */
 }
 
-/* (Opcional) Simplifica herencia de fuentes para inputs y botones */
+/* (Optional) Simplify font inheritance for inputs and buttons */
 input,
 button,
 textarea,
 select {
-    font: inherit; /* Hereda la fuente del body o contenedor padre */
+    font: inherit; /* Inherits font from the body or parent container */
 }
