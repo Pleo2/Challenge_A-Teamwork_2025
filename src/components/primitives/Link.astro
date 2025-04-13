@@ -1,0 +1,214 @@
+---
+export interface Props {
+    href?: string; // URL for 'a' tags
+    tag?: "a" | "button"; // Determines the HTML tag rendered
+    size?: "xs" | "sm" | "md" | "lg"; // Controls padding and font-size
+    block?: boolean; // If true, takes full width (display: block/flex)
+    style?: "primary" | "button" | "outline" | "buttonLight"; // Visual style variant
+    class?: string; // Allows passing external classes
+    localized?: boolean; // Prop exists but isn't used in this logic
+    // Allow any other HTML attributes (like aria-label, id, etc.)
+    [x: string]: unknown;
+}
+
+// Type alias (can be useful for external usage)
+export type LinkType = Props & {
+    title?: string; // Example of extending Props if needed elsewhere
+};
+
+// Destructure props with default values
+const {
+    href,
+    tag, // Let Tag definition below handle default
+    block = false, // Default to inline
+    size = "md", // Default size
+    style = "primary", // Default style
+    localized = true, // Default, but unused here
+    class: className, // Rename 'class' prop to avoid conflict
+    // Note: 'icon' prop was destructured in original but not used in template/style.
+    // Note: 'iconSizes' map was defined in original but not used.
+    ...rest // Capture remaining attributes (e.g., aria-*, data-*)
+} = Astro.props as Props;
+
+// Determine the tag to render, default to 'a' if href is present, otherwise 'button'
+const Tag = tag || (href ? "a" : "button");
+
+// Validate: 'a' tags must have an 'href'
+if (Tag === "a" && !href) {
+    throw new Error("ButtonLink Error: The `href` prop is required when using the `a` tag.");
+}
+
+// Prepare href: Ensure internal links start with '/' or default to root '/'
+// Allow external links (http/https) or mailto: etc. as is.
+let finalHref: string | undefined = undefined;
+if (Tag === 'a' && href) {
+    if (href.startsWith('/') || href.startsWith('#') || /^[a-z]+:/.test(href)) {
+        finalHref = href; // Keep absolute, relative, anchor, or protocol links
+    } else {
+        finalHref = '/' + href; // Assume relative to root if just a segment
+    }
+}
+---
+
+<Tag
+    {...(Tag === 'a' && finalHref ? { href: finalHref } : {})}
+    class:list={[
+        "button-link", // Base class for all instances
+        `button-link--size-${size}`, // Apply size class based on prop
+        `button-link--style-${style}`, // Apply style class based on prop
+        block ? "button-link--block" : "button-link--inline", // Apply display class
+        className // Merge external classes
+    ]}
+    {...rest}
+>
+    <slot /> {/* Content goes here (text, icons, etc.) */}
+</Tag>
+
+<style>
+    /* src/components/ButtonLink.astro <style> */
+    /* Define CSS Variables (Consider moving to global.css if shared) */
+    :root {
+        --btn-color-text-light: #ffffff;
+        --btn-color-text-dark: #000000;
+        --btn-color-bg-dark: #000000;
+        --btn-color-bg-light: #ffffff;
+        --btn-color-primary-100: #cccccc; /* Placeholder for border color */
+        --btn-color-primary-800: #555555; /* Placeholder for hover bg */
+        --btn-transition-duration: 0.2s;
+        --btn-hover-opacity: 0.85;
+    }
+
+    /* Base styles for all buttons/links */
+    .button-link {
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid transparent; /* Base border, can be overridden by styles */
+        text-align: center; /* Center text by default */
+        transition: background-color var(--btn-transition-duration) ease,
+                    color var(--btn-transition-duration) ease,
+                    border-color var(--btn-transition-duration) ease,
+                    opacity var(--btn-transition-duration) ease;
+        position: relative; /* Needed for potential pseudo-elements or absolute children */
+        font-weight: 600; /* Default font-weight (semibold) */
+    }
+    /* Remove default button styling */
+    .button-link[href] { /* Target 'a' tags */
+        /* Specific 'a' styles if needed */
+    }
+    .button-link:not([href]) { /* Target 'button' tags */
+        appearance: none;
+        background: none;
+        font-family: inherit; /* Ensure buttons inherit font */
+        font-size: inherit;
+        border: none; /* Reset button border */
+        padding: 0; /* Reset button padding */
+    }
+    .button-link:focus-visible {
+        outline: 2px solid var(--btn-color-primary-800); /* Basic focus outline */
+        outline-offset: 2px;
+    }
+
+    /* Display variants */
+    .button-link--inline {
+        display: inline-flex; /* Default: aligns content vertically */
+        align-items: center;
+        justify-content: center; /* Center content horizontally */
+    }
+    .button-link--block {
+        display: flex; /* Takes full width */
+        align-items: center;
+        justify-content: center; /* Center content horizontally */
+        width: 100%; /* Ensure it takes full width */
+    }
+
+    /* Size variants (Translate Tailwind paddings/text sizes) */
+    .button-link--size-xs {
+        /* Tailwind: "" - No specific size class in original example? Add sensible defaults */
+        padding: 0.25rem 0.5rem; /* Example xs padding */
+        font-size: 0.875rem; /* Example xs text size */
+    }
+    .button-link--size-sm {
+        /* Tailwind: px-4 py-2 */
+        padding: 0.5rem 1rem;
+        font-size: 1rem; /* Assume default text size for sm */
+    }
+    .button-link--size-md {
+        /* Tailwind: px-5 py-2.5 text-xl text-lg */
+        /* Note: text-xl and text-lg conflict. Assuming lg=1.125rem, xl=1.25rem. Let's use text-lg (1.125rem). */
+        padding: 0.625rem 1.25rem;
+        font-size: 1.125rem;
+    }
+    .button-link--size-lg {
+        /* Tailwind: px-8 py-3 text-2xl */
+        padding: 0.75rem 2rem;
+        font-size: 1.5rem;
+    }
+
+    /* Style variants (Translate Tailwind bg, text, border, etc.) */
+    .button-link--style-primary {
+        /* Tailwind: "" - No specific style classes. Apply base or default appearance */
+        /* Example: Maybe transparent background, inherit text color? */
+        /* Or apply default button look if needed */
+         /* background-color: var(--btn-color-primary-100); */
+         /* color: var(--btn-color-text-dark); */
+         /* Let's leave it mostly unstyled based on original empty string */
+         /* font-weight: normal; /* Maybe primary is less bold? */
+    }
+
+    .button-link--style-button {
+        /* Tailwind: button-primary bg-black text-white ... rounded-md font-semibold */
+        background-color: var(--btn-color-bg-dark);
+        color: var(--btn-color-text-light);
+        border-radius: 0.375rem; /* rounded-md */
+        font-weight: 600; /* font-semibold - Already base style, but explicit here */
+        /* Inherit padding/font-size from size variant */
+    }
+    .button-link--style-button:hover {
+         /* Tailwind: hover opacity */
+        opacity: var(--btn-hover-opacity);
+    }
+    /* Icon transition from original style block */
+    .button-link--style-button [data-icon*="arrow-top-right"] { /* Make selector slightly more general */
+        transition: transform var(--btn-transition-duration);
+    }
+    .button-link--style-button:hover [data-icon*="arrow-top-right"] {
+        transform: translate(3px, -3px);
+    }
+
+
+    .button-link--style-buttonLight {
+        /* Tailwind: button-primary bg-white text-black ... rounded-md font-bold */
+        background-color: var(--btn-color-bg-light);
+        color: var(--btn-color-text-dark);
+        border-radius: 0.375rem; /* rounded-md */
+        font-weight: 700; /* font-bold */
+        /* Inherit padding/font-size from size variant */
+    }
+     .button-link--style-buttonLight:hover {
+         /* Tailwind: hover opacity */
+        opacity: var(--btn-hover-opacity);
+    }
+     /* Apply icon transition also to buttonLight? Assume yes based on original .button-primary target */
+    .button-link--style-buttonLight [data-icon*="arrow-top-right"] {
+        transition: transform var(--btn-transition-duration);
+    }
+    .button-link--style-buttonLight:hover [data-icon*="arrow-top-right"] {
+        transform: translate(3px, -3px);
+    }
+
+
+    .button-link--style-outline {
+        /* Tailwind: hover:bg-primary-800 hover:text-white border border-primary-100 rounded-md */
+        border: 1px solid var(--btn-color-primary-100);
+        background-color: transparent;
+        color: var(--btn-color-primary-100); /* Assume text color matches border initially */
+        border-radius: 0.375rem; /* rounded-md */
+        font-weight: 600; /* Assume semibold like 'button' style */
+        /* Inherit padding/font-size from size variant */
+    }
+    .button-link--style-outline:hover {
+        background-color: var(--btn-color-primary-800);
+        color: var(--btn-color-text-light); /* hover:text-white */
+        border-color: var(--btn-color-primary-800); /* Make border match bg on hover */
+    }
+</style>

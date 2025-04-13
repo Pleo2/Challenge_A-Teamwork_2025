@@ -1,6 +1,7 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
 import "../styles/globals.css";
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/navigation/Header.astro";
 
 const pageTitle = "Welcome to Vrume";
 const pageDescription =
@@ -8,12 +9,48 @@ const pageDescription =
 const shareImage = "/assets/VRUME-white-with-red-dot.webp";
 ---
 
-<MainLayout
-    title={pageTitle}
-    description={pageDescription}
-    image={shareImage}
-    >
-    <h1>Bienvenido a mi Landing Page</h1>
+<MainLayout title={pageTitle} description={pageDescription} image={shareImage}>
+    <Header />
+    <!-- <Hero/> -->
+
+    <!-- <Section_2>
+            <Card
+                title="CPC & CPL Performance Marketing"
+                description="Our performance-based marketing models give you the power to only pay for what works. Whether it’s CPC (Cost Per Click) or CPL (Cost Per Lead), our model ensures that you’reinvesting in conversions and measurable results."
+                image="/assets/cpc"
+            />
+           <Card ... />
+        </Section_2> -->
+
+    <!--
+        <Section_3>
+            <Step
+                title="Identify Your Audience"
+                description="Using our advanced targeting tools, we define your target audience based on demographics, behavior, and interests. Whether you’re in business marketing, mobile advertising, or native display ads, we ensure your campaigns hit the mark."
+            />
+           <Step ... />
+        </Section_3> -->
+
+    <!--
+        <Section_4>
+            <Testimonial
+                name="Matt"
+                company="Tremendio Network"
+                description="Vrume has been providing us with exceptional traffic for 2 years now, they provide fantastic support and are capable to supply traffic in numerous geos. Highly recommended"
+            />
+           <Testimonial ... />
+        </Section_4> -->
+
+    <!--
+        <Section_5>
+            <Form/>
+        </Section_5> -->
+
+    <!-- <Footer>
+            <About/>
+            <Social/>
+            <SubscribeNewletter/>
+        </Footer> -->
 </MainLayout>
 
 <style></style>

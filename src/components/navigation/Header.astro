@@ -1,0 +1,401 @@
+---
+import Link from "../primitives/Link.astro";
+
+const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Advertisers", href: "/" },
+    { name: "Publishers", href: "/" },
+    { name: "Case Studies", href: "/" },
+    { name: "Contact Us", href: "/" }
+];
+---
+
+<header id="main-header" class="header">
+    <div class="container">
+        <a id="branding" href="/" class="branding-link">
+            <img
+                src="/assets/vrume-logo.webp"
+                alt="Vrume Logo"
+                class="logo"
+                width="150"
+                height="auto"
+            />
+        </a>
+
+        {/* Navegación para escritorio */}
+        <nav class="desktop-nav">
+            {
+                navLinks.map((link) => (
+                    <Fragment key={link.name}>
+                        <a href={link.href} class="nav-link">
+                            {link.name}
+                        </a>
+                    </Fragment>
+                ))
+            }
+        </nav>
+
+        {/* Botón Hamburguesa para móvil */}
+        <button
+            id="toggleMenu"
+            class="toggle-menu"
+            aria-label="Toggle Navigation Menu"
+            aria-expanded="false"
+            aria-controls="mobileModal"
+        >
+            <span class="hamburger-line line-1"></span>
+            <span class="hamburger-line line-2"></span>
+            <span class="hamburger-line line-3"></span>
+        </button>
+    </div>
+
+    {/* Modal/Overlay para navegación móvil */}
+    <div
+        id="mobileModal"
+        class="mobile-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+    >
+        <nav class="mobile-nav">
+            {
+                navLinks.map((link) => (
+                    <Fragment key={link.name}>
+                        <a href={link.href} class="mobile-nav-link">
+                            {link.name}
+                        </a>
+                    </Fragment>
+                ))
+            }
+        </nav>
+    </div>
+</header>
+
+<script>
+    function initializeHeader() {
+        // Obtener elementos del DOM
+        const header = document.getElementById(
+            "main-header"
+        ) as HTMLElement | null;
+        const mobileModal = document.getElementById(
+            "mobileModal"
+        ) as HTMLElement | null;
+        const toggleBtn = document.getElementById(
+            "toggleMenu"
+        ) as HTMLButtonElement | null;
+
+        // --- ¡Guardia Esencial! ---
+        // Si alguno de los elementos cruciales no se encuentra, no hacer nada más.
+        if (!header || !mobileModal || !toggleBtn) {
+            console.error(
+                "Header component elements not found. Navigation initialization aborted."
+            );
+            return; // Detiene la ejecución de initializeHeader si falta algún elemento
+        }
+        // --- A partir de aquí, TypeScript sabe que header, mobileModal y toggleBtn NO son null ---
+
+        // Obtener los enlaces móviles (ahora podemos usar mobileModal directamente)
+        const mobileLinks = mobileModal.querySelectorAll("a");
+
+        let isMenuOpen = false;
+
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+
+            // Alterna clases - Ahora seguro porque toggleBtn y mobileModal no son null
+            toggleBtn.classList.toggle("is-active", isMenuOpen);
+            mobileModal.classList.toggle("is-open", isMenuOpen);
+
+            // Controla atributos ARIA
+            toggleBtn.setAttribute("aria-expanded", isMenuOpen.toString());
+            mobileModal.setAttribute("aria-hidden", (!isMenuOpen).toString());
+
+            // Evita el scroll del body
+            document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+            // Gestiona la visibilidad del header al abrir/cerrar menú
+            if (isMenuOpen) {
+                header.classList.remove("header-hidden");
+            } else {
+                checkScroll();
+            }
+        }
+
+        function checkScroll() {
+            if (isMenuOpen) return;
+            // Ahora header no es null
+            const shouldHide = window.scrollY > 40;
+            header.classList.toggle("header-hidden", shouldHide);
+        }
+
+        // --- Añadir Listeners (Ahora seguro) ---
+
+        // Listener para el botón de hamburguesa
+        toggleBtn.addEventListener("click", toggleMobileMenu);
+
+        // Listener para los enlaces móviles
+        mobileLinks?.forEach((link) => {
+            // Usamos optional chaining por si no hay enlaces
+            link.addEventListener("click", () => {
+                if (isMenuOpen) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Listener para el scroll
+        window.addEventListener("scroll", checkScroll, { passive: true });
+
+        // Comprobación inicial
+        checkScroll();
+    }
+
+    // Ejecutar al cargar el DOM y en navegación Astro
+    document.addEventListener("DOMContentLoaded", initializeHeader);
+    document.addEventListener("astro:page-load", initializeHeader);
+</script>
+
+<style>
+    /* Variables locales (puedes definirlas globalmente si se usan en otros lugares) */
+    :root {
+        /* Define colores (ajusta según tu paleta) */
+        --color-foreground: #333;
+        --color-foreground-rgb: 51, 51, 51; /* Para usar con rgba */
+        --color-background: #fff;
+        --color-primary-gradient-start: #ff7e5f; /* Ejemplo de gradiente */
+        --color-primary-gradient-end: #feb47b; /* Ejemplo de gradiente */
+        --color-white: #ffffff;
+        --color-black-transparent: rgba(0, 0, 0, 0.9);
+        --transition-duration-fast: 0.3s;
+        --transition-duration-medium: 0.5s;
+        --blur-amount: 10px; /* Ajusta el nivel de blur */
+        --header-height: 4rem; /* Altura estimada del header en desktop */
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 50;
+        padding: 1rem 0; /* Padding vertical base para móvil */
+        background-color: transparent; /* Transparente por defecto */
+        transition:
+            background-color var(--transition-duration-fast) ease,
+            transform var(--transition-duration-fast) ease,
+            /* Para ocultar/mostrar */ backdrop-filter
+                var(--transition-duration-fast) ease;
+        /* Inicialmente visible (transform) */
+        transform: translateY(0);
+    }
+
+    .header.header-hidden {
+        /* Oculta deslizando hacia arriba */
+        transform: translateY(-100%);
+        /* Podrías usar display: none, pero el transform permite animación */
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 90rem; /* Ancho máximo general */
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem; /* Padding horizontal móvil */
+        padding-right: 1rem;
+    }
+
+    .branding-link {
+        /* font-family: var(--font-heading); */ /* Asume variable global */
+        font-weight: bold;
+        font-size: 1.5rem; /* Tamaño móvil */
+        letter-spacing: -0.025em; /* tracking-tight */
+        text-decoration: none;
+        transition: opacity var(--transition-duration-medium) ease;
+        /* Estilo de gradiente */
+        background: linear-gradient(
+            to right,
+            var(--color-primary-gradient-start),
+            var(--color-primary-gradient-end)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .branding-link:hover {
+        opacity: 0.8; /* Ejemplo de efecto hover */
+    }
+
+    .desktop-nav {
+        display: none; /* Oculto en móvil */
+        align-items: center;
+        gap: 2rem; /* Espacio entre enlaces (era space-x-8) */
+    }
+
+    .nav-link {
+        font-size: 1.125rem; /* Tamaño desktop (era text-xl) */
+        /* font-family: var(--font-sans); */ /* Asume variable global */
+        color: rgba(var(--color-foreground-rgb), 0.8); /* text-foreground/80 */
+        text-decoration: none; /* Quitar subrayado base */
+        position: relative; /* Para el pseudo-elemento de subrayado */
+        transition: color var(--transition-duration-fast) ease;
+    }
+
+    /* Efecto subrayado ondulado al pasar el ratón */
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px; /* Posición debajo del texto */
+        left: 0;
+        width: 100%;
+        height: 2px; /* Grosor del subrayado */
+        background-color: var(--color-foreground); /* Color del subrayado */
+        transform: scaleX(0); /* Oculto inicialmente */
+        transform-origin: left;
+        transition: transform var(--transition-duration-fast) ease;
+        /* Para el efecto ondulado (requiere imagen o SVG o técnica más compleja) */
+        /* text-decoration-style: wavy; es difícil de replicar solo con pseudo-elementos */
+        /* Simplificación: Usamos un subrayado normal */
+    }
+
+    .nav-link:hover {
+        color: var(--color-foreground);
+    }
+    .nav-link:hover::after {
+        transform: scaleX(1); /* Mostrar subrayado al pasar el ratón */
+        /* Para el color: ya está en el color base del pseudo-elemento */
+    }
+
+    .toggle-menu {
+        display: flex; /* Visible en móvil */
+        flex-direction: column;
+        gap: 0.3rem;
+        background-color: transparent;
+        border: none;
+        padding: 0.5rem; /* Añade algo de padding para que sea más fácil tocar */
+        cursor: pointer;
+        z-index: 51; /* Encima del header pero debajo del modal si es necesario */
+        margin: -0.5rem; /* Compensa el padding para alineación visual */
+    }
+    .toggle-menu:focus-visible {
+        outline: 2px solid var(--color-foreground); /* Mejora accesibilidad */
+        outline-offset: 2px;
+    }
+
+    .hamburger-line {
+        display: block;
+        width: 1.25rem; /* w-5 */
+        height: 2px; /* h-0.5 */
+        background-color: var(--color-foreground);
+        border-radius: 9999px; /* rounded-full */
+        transition:
+            transform var(--transition-duration-fast) ease-in-out,
+            opacity var(--transition-duration-fast) ease-in-out;
+    }
+
+    /* Animación del botón hamburguesa a "X" cuando está activo */
+    .toggle-menu.is-active .line-1 {
+        transform: translateY(calc(0.3rem + 2px)) rotate(45deg); /* Sube y rota */
+        transform-origin: center; /* Ajusta origen si es necesario */
+    }
+    .toggle-menu.is-active .line-2 {
+        opacity: 0; /* Desaparece la línea del medio */
+    }
+    .toggle-menu.is-active .line-3 {
+        transform: translateY(calc(-0.3rem - 2px)) rotate(-45deg); /* Baja y rota */
+        transform-origin: center; /* Ajusta origen si es necesario */
+    }
+
+    .mobile-modal {
+        position: fixed;
+        inset: 0; /* Cubre toda la pantalla */
+        background-color: var(--color-black-transparent); /* bg-black/90 */
+        backdrop-filter: blur(
+            var(--blur-amount)
+        ); /* backdrop-blur-2xl (ajusta --blur-amount) */
+        z-index: 49; /* Detrás del botón hamburguesa activo */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none; /* No interactuable cuando está oculto */
+        visibility: hidden; /* Oculto para accesibilidad */
+        transition:
+            opacity var(--transition-duration-fast) ease,
+            visibility var(--transition-duration-fast) ease;
+    }
+    .mobile-modal.is-open {
+        opacity: 1;
+        pointer-events: auto; /* Interactuable */
+        visibility: visible; /* Visible para accesibilidad */
+    }
+
+    .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra los enlaces */
+        gap: 1.5rem; /* space-y-6 */
+    }
+
+    .mobile-nav-link {
+        font-size: 2.5rem; /* Ajusta según preferencia (era 5xl) */
+        font-weight: 600; /* font-semibold */
+        color: var(--color-white);
+        text-decoration: none;
+        transition: color var(--transition-duration-fast) ease;
+    }
+    .mobile-nav-link:hover,
+    .mobile-nav-link:focus {
+        color: var(
+            --color-primary-gradient-end
+        ); /* Cambia color al pasar/foco */
+    }
+
+    /* --- Estilos Responsive (Mobile First) --- */
+
+    /* Estilos para Tabletas y Escritorio (md: breakpoint - 768px por defecto en Tailwind) */
+    @media (min-width: 768px) {
+        .header {
+            padding: 1.5rem 0; /* Ajusta padding vertical para desktop (era py-6) */
+            backdrop-filter: blur(
+                var(--blur-amount)
+            ); /* Aplica blur en desktop (era md:backdrop-blur-xl) */
+            background-color: rgba(
+                var(--color-background-rgb),
+                0.8
+            ); /* Fondo semi-transparente en desktop */
+            /* La altura se ajustará al contenido (era md:h-max) */
+            /* Quitar el transform para la versión desktop si no se oculta al scrollear */
+            /* Si quieres que se oculte también en desktop al scrollear, mantén .header-hidden */
+            transform: translateY(0); /* Asegura que sea visible inicialmente */
+        }
+
+        .header.header-hidden {
+            /* Aplica el ocultamiento por scroll también en desktop si se desea */
+            transform: translateY(-100%);
+        }
+
+        .container {
+            padding-left: 2rem; /* Padding horizontal desktop (era md:px-8) */
+            padding-right: 2rem;
+        }
+
+        .branding-link {
+            font-size: 2.25rem; /* Tamaño desktop (era md:text-4xl) */
+        }
+
+        .desktop-nav {
+            display: flex; /* Muestra la navegación de escritorio */
+        }
+
+        .toggle-menu {
+            display: none; /* Oculta el botón hamburguesa */
+        }
+
+        .mobile-modal {
+            display: none; /* Oculta el modal móvil */
+        }
+    }
+</style>
