@@ -59,42 +59,42 @@ const siteName = "Nombre de Mi Proyecto";
         <link rel="canonical" href={finalCanonicalURL} />
         <meta name="robots" content={robotsContent} />
 
-        {/* --- Favicons (Ejemplo básico) --- */}
-        {/* Coloca tus favicons en la carpeta 'public/' */}
+        {/* --- Favicons (Basic Example) --- */}
+        {/* Place your favicons in the 'public/' folder */}
         <link rel="icon" type="image/ico" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        {/* Considera usar un generador de favicons para más formatos */}
+        {/* Consider using a favicon generator for additional formats */}
 
         {
-            /* --- Open Graph Tags (para redes sociales como Facebook, LinkedIn) --- */
+            /* --- Open Graph Tags (for social networks like Facebook, LinkedIn) --- */
         }
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={finalCanonicalURL} />
         <meta property="og:image" content={ogImageUrl} />
-        {/* URL absoluta a la imagen */}
+        {/* Absolute URL for the image */}
         <meta property="og:type" content="website" />
-        {/* O 'article' para posts de blog, etc. */}
+        {/* Or 'article' for blog posts, etc. */}
         <meta property="og:site_name" content={siteName} />
         <meta property="og:locale" content={lang.replace("-", "_")} />
-        {/* Formato es_ES */}
+        {/* Locale format (e.g., en_US) */}
 
-        {/* --- Twitter Card Tags (para Twitter) --- */}
+        {/* --- Twitter Card Tags (for Twitter) --- */}
         <meta
             name="twitter:card"
             content={ogImageUrl ? "summary_large_image" : "summary"}
         />
-        {/* Usa imagen grande si hay */}
+        {/* Use a large image if available */}
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImageUrl} />
-        {/* URL absoluta a la imagen */}
-        {/* Opcional: <meta name="twitter:site" content="@tuUsuarioTwitter"> */}
+        {/* Absolute URL for the image */}
+        {/* Optional: <meta name="twitter:site" content="@yourTwitterUsername"> */}
         {
-            /* Opcional: <meta name="twitter:creator" content="@autorContenidoTwitter"> */
+            /* Optional: <meta name="twitter:creator" content="@twitterContentAuthor"> */
         }
 
-        {/* El resto de tus <head> elementos (links a fuentes, etc.) */}
+        {/* Additional <head> elements (e.g., links to fonts) */}
     </head>
     <body>
         <main class="mi-clase-layout">
