@@ -1,1 +1,94 @@
-import 'normalize.css';
+@import "normalize.css";
+
+/* set up font local */
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/Roboto-VariableFont_wdth,wght.ttf")
+        format("truetype-variations");
+    font-weight: 1 999;
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src: url("/fonts/BebasNeue-Regular.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+/*
+ * 1. Box Sizing: Cambia el modelo de caja para que padding y border
+ * se incluyan en el ancho/alto total del elemento. Facilita mucho el layout.
+ * 2. Eliminar márgenes/padding por defecto que normalize.css podría no quitar (opcional, normalize ya hace mucho).
+ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* 1 */
+    /* margin: 0; */ /* 2 - Descomentar si necesitas un reset más agresivo */
+    /* padding: 0; */ /* 2 - Descomentar si necesitas un reset más agresivo */
+}
+
+/*
+ * Configuraciones para el elemento raíz (HTML)
+ * 1. Altura base para que el body pueda usar min-height: 100vh correctamente.
+ * 2. Comportamiento de scroll suave para anclas (#).
+ * 3. Base del tamaño de fuente:
+ * - Opción A (Recomendada para REMs fáciles): 62.5% hace que 1rem = 10px (16px * 0.625 = 10px).
+ * - Opción B (Estándar): 100% mantiene 1rem = 16px (o el tamaño por defecto del navegador).
+ * 4. Previene el ajuste automático del tamaño del texto en móviles (iOS).
+ */
+html {
+    height: 100%; /* 1 */
+    scroll-behavior: smooth; /* 2 */
+    font-size: 62.5%; /* 3 - Opción A */
+    /* font-size: 100%; */ /* 3 - Opción B (comenta la línea anterior si usas esta) */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    text-size-adjust: 100%; /* 4 */
+}
+
+/*
+ * Configuraciones para el Body
+ * 1. Asegura que el body ocupe al menos toda la altura de la ventana gráfica (viewport).
+ * Importante para footers pegajosos (sticky footers) o fondos completos.
+ * 2. Elimina el margen por defecto que aplican los navegadores al body.
+ * 3. Establece una fuente base legible y común (stack sans-serif).
+ * 4. Establece una altura de línea base para mejorar legibilidad.
+ * 5. Establece un color de texto base.
+ * 6. Color de fondo base (opcional, puedes definirlo donde prefieras).
+ * 7. Habilita el antialiasing para fuentes más suaves (en navegadores que lo soportan).
+ * 8. (Opcional) Previene el desbordamiento horizontal accidental. Úsalo con cuidado.
+ */
+
+body {
+    min-height: 100vh; /* 1 */ /* vh es relativo al viewport, más robusto que height: 100% aquí */
+    margin: 0; /* 2 */
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif; /* 3 */
+    line-height: 1.6; /* 4 */
+    color: #333; /* 5 - Un gris oscuro es común */
+    background-color: #fff; /* 6 - Blanco por defecto */
+    -webkit-font-smoothing: antialiased; /* 7 */
+    -moz-osx-font-smoothing: grayscale; /* 7 */
+    /* overflow-x: hidden; */ /* 8 - Descomentar si tienes problemas de scroll horizontal inesperado */
+}
+
+/* Reglas básicas para imágenes responsive  */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block; /* Evita espacio extra debajo de las imágenes */
+    max-width: 100%; /* Asegura que no se desborden de su contenedor */
+    height: auto; /* Mantiene la proporción al escalar el ancho */
+}
+
+/* (Opcional) Simplifica herencia de fuentes para inputs y botones */
+input,
+button,
+textarea,
+select {
+    font: inherit; /* Hereda la fuente del body o contenedor padre */
+}
