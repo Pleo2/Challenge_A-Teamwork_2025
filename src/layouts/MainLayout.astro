@@ -1,5 +1,6 @@
 ---
 import "../styles/globals.css";
+
 interface Props {
     title: string; // Page title (crucial for SEO)
     description: string; // Concise description for search snippets (< 160 characters)
@@ -52,6 +53,7 @@ const siteName = "Nombre de Mi Proyecto";
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
+        <meta name="theme-color" content="#131313" />
 
         {/* --- SEO Core Tags --- */}
         <title>{title}</title>
@@ -89,15 +91,15 @@ const siteName = "Nombre de Mi Proyecto";
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImageUrl} />
         {/* Absolute URL for the image */}
-        {/* Optional: <meta name="twitter:site" content="@yourTwitterUsername"> */}
+        {
+            /* Optional: <meta name="twitter:site" content="@yourTwitterUsername"> */
+        }
         {
             /* Optional: <meta name="twitter:creator" content="@twitterContentAuthor"> */
         }
-
-        {/* Additional <head> elements (e.g., links to fonts) */}
     </head>
     <body>
-        <main class="mi-clase-layout">
+        <main>
             <slot />
         </main>
     </body>
@@ -111,21 +113,12 @@ const siteName = "Nombre de Mi Proyecto";
     }
 
     /* mobile style */
-    .mi-clase-layout {
-        background-color: blue;
-    }
 
     /* tablet style */
     @media (min-width: 768px) {
-        .mi-clase-layout {
-            background-color: aliceblue;
-        }
     }
 
     /* desktop styles */
     @media (min-width: 1024px) {
-        .mi-clase-layout {
-            background-color: bisque;
-        }
     }
 </style>

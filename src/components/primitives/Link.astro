@@ -2,7 +2,6 @@
 export interface Props {
     href?: string; // URL for 'a' tags
     tag?: "a" | "button"; // Determines the HTML tag rendered
-    size?: "xs" | "sm" | "md" | "lg"; // Controls padding and font-size
     block?: boolean; // If true, takes full width (display: block/flex)
     style?: "primary" | "button" | "outline" | "buttonLight"; // Visual style variant
     class?: string; // Allows passing external classes
@@ -66,110 +65,88 @@ if (Tag === 'a' && href) {
 
 <style>
     /* src/components/ButtonLink.astro <style> */
-    /* Define CSS Variables (Consider moving to global.css if shared) */
-    :root {
-        --btn-color-text-light: #ffffff;
-        --btn-color-text-dark: #000000;
-        --btn-color-bg-dark: #000000;
-        --btn-color-bg-light: #ffffff;
-        --btn-color-primary-100: #cccccc; /* Placeholder for border color */
-        --btn-color-primary-800: #555555; /* Placeholder for hover bg */
-        --btn-transition-duration: 0.2s;
-        --btn-hover-opacity: 0.85;
-    }
+    /* --- Local :root variables removed, using global variables now --- */
 
     /* Base styles for all buttons/links */
     .button-link {
         cursor: pointer;
         text-decoration: none;
-        border: 1px solid transparent; /* Base border, can be overridden by styles */
-        text-align: center; /* Center text by default */
-        transition: background-color var(--btn-transition-duration) ease,
-                    color var(--btn-transition-duration) ease,
-                    border-color var(--btn-transition-duration) ease,
-                    opacity var(--btn-transition-duration) ease;
-        position: relative; /* Needed for potential pseudo-elements or absolute children */
-        font-weight: 600; /* Default font-weight (semibold) */
+        border: 1px solid transparent;
+        text-align: center;
+        /* Use global transition duration */
+        transition: background-color var(--transition-duration) ease,
+                    color var(--transition-duration) ease,
+                    border-color var(--transition-duration) ease,
+                    opacity var(--transition-duration) ease;
+        position: relative;
+        font-weight: 600;
     }
-    /* Remove default button styling */
-    .button-link[href] { /* Target 'a' tags */
-        /* Specific 'a' styles if needed */
-    }
-    .button-link:not([href]) { /* Target 'button' tags */
+    /* Reset default button styling */
+    .button-link[href] { }
+    .button-link:not([href]) {
         appearance: none;
         background: none;
-        font-family: inherit; /* Ensure buttons inherit font */
+        font-family: inherit;
         font-size: inherit;
-        border: none; /* Reset button border */
-        padding: 0; /* Reset button padding */
+        border: none;
+        padding: 0;
     }
+    /* Use accent color for focus outline */
     .button-link:focus-visible {
-        outline: 2px solid var(--btn-color-primary-800); /* Basic focus outline */
+        outline: 2px solid var(--color-accent);
         outline-offset: 2px;
     }
 
     /* Display variants */
     .button-link--inline {
-        display: inline-flex; /* Default: aligns content vertically */
+        display: inline-flex;
         align-items: center;
-        justify-content: center; /* Center content horizontally */
+        justify-content: center;
     }
     .button-link--block {
-        display: flex; /* Takes full width */
+        display: flex;
         align-items: center;
-        justify-content: center; /* Center content horizontally */
-        width: 100%; /* Ensure it takes full width */
+        justify-content: center;
+        width: 100%;
     }
 
-    /* Size variants (Translate Tailwind paddings/text sizes) */
+    /* Size variants - No color changes needed */
     .button-link--size-xs {
-        /* Tailwind: "" - No specific size class in original example? Add sensible defaults */
-        padding: 0.25rem 0.5rem; /* Example xs padding */
-        font-size: 0.875rem; /* Example xs text size */
+
+        font-size: 0.875rem;
     }
     .button-link--size-sm {
-        /* Tailwind: px-4 py-2 */
-        padding: 0.5rem 1rem;
-        font-size: 1rem; /* Assume default text size for sm */
+        font-size: 1rem;
     }
     .button-link--size-md {
-        /* Tailwind: px-5 py-2.5 text-xl text-lg */
-        /* Note: text-xl and text-lg conflict. Assuming lg=1.125rem, xl=1.25rem. Let's use text-lg (1.125rem). */
-        padding: 0.625rem 1.25rem;
         font-size: 1.125rem;
     }
     .button-link--size-lg {
-        /* Tailwind: px-8 py-3 text-2xl */
-        padding: 0.75rem 2rem;
         font-size: 1.5rem;
     }
 
-    /* Style variants (Translate Tailwind bg, text, border, etc.) */
+    /* Style variants - Apply global variables */
     .button-link--style-primary {
-        /* Tailwind: "" - No specific style classes. Apply base or default appearance */
-        /* Example: Maybe transparent background, inherit text color? */
-        /* Or apply default button look if needed */
-         /* background-color: var(--btn-color-primary-100); */
-         /* color: var(--btn-color-text-dark); */
-         /* Let's leave it mostly unstyled based on original empty string */
-         /* font-weight: normal; /* Maybe primary is less bold? */
+        /* Keep unstyled or define a default subtle look if needed */
+        /* Example: color: var(--color-link); text-decoration: underline; */
     }
 
     .button-link--style-button {
-        /* Tailwind: button-primary bg-black text-white ... rounded-md font-semibold */
-        background-color: var(--btn-color-bg-dark);
-        color: var(--btn-color-text-light);
-        border-radius: 0.375rem; /* rounded-md */
-        font-weight: 600; /* font-semibold - Already base style, but explicit here */
-        /* Inherit padding/font-size from size variant */
+        /* Use global button primary variables */
+        background-color: var(--color-button-primary-bg);
+        color: var(--color-button-primary-text);
+        border-radius: var(--border-radius); /* Use global border radius */
+        font-weight: 600;
     }
     .button-link--style-button:hover {
-         /* Tailwind: hover opacity */
-        opacity: var(--btn-hover-opacity);
+        /* Use global button hover variable */
+        background-color: var(--color-button-primary-hover-bg);
+        /* Remove opacity change if background changes */
+        /* opacity: 0.85; */
     }
-    /* Icon transition from original style block */
-    .button-link--style-button [data-icon*="arrow-top-right"] { /* Make selector slightly more general */
-        transition: transform var(--btn-transition-duration);
+    /* Icon transition (keep as is) */
+    .button-link--style-button [data-icon*="arrow-top-right"] {
+        transition: transform var(--transition-duration);
     }
     .button-link--style-button:hover [data-icon*="arrow-top-right"] {
         transform: translate(3px, -3px);
@@ -177,20 +154,24 @@ if (Tag === 'a' && href) {
 
 
     .button-link--style-buttonLight {
-        /* Tailwind: button-primary bg-white text-black ... rounded-md font-bold */
-        background-color: var(--btn-color-bg-light);
-        color: var(--btn-color-text-dark);
-        border-radius: 0.375rem; /* rounded-md */
-        font-weight: 700; /* font-bold */
-        /* Inherit padding/font-size from size variant */
+        /* Example: White background, accent text */
+        background-color: var(--color-bg-card); /* White background */
+        color: var(--color-accent); /* Accent color text */
+        border: 1px solid var(--color-accent); /* Optional: add accent border */
+        border-radius: var(--border-radius); /* Use global border radius */
+        font-weight: 700;
     }
      .button-link--style-buttonLight:hover {
-         /* Tailwind: hover opacity */
-        opacity: var(--btn-hover-opacity);
+        /* Example hover: Darken background slightly, or invert */
+         background-color: color-mix(in srgb, var(--color-bg-card) 90%, black);
+         /* Alternatively, could invert on hover: */
+         /* background-color: var(--color-accent); */
+         /* color: var(--color-text-on-accent); */
+         /* border-color: var(--color-accent); */
     }
-     /* Apply icon transition also to buttonLight? Assume yes based on original .button-primary target */
+     /* Icon transition (keep as is) */
     .button-link--style-buttonLight [data-icon*="arrow-top-right"] {
-        transition: transform var(--btn-transition-duration);
+        transition: transform var(--transition-duration);
     }
     .button-link--style-buttonLight:hover [data-icon*="arrow-top-right"] {
         transform: translate(3px, -3px);
@@ -198,17 +179,17 @@ if (Tag === 'a' && href) {
 
 
     .button-link--style-outline {
-        /* Tailwind: hover:bg-primary-800 hover:text-white border border-primary-100 rounded-md */
-        border: 1px solid var(--btn-color-primary-100);
+        /* Use global accent color for border and text */
+        border: 1px solid var(--color-border-accent);
         background-color: transparent;
-        color: var(--btn-color-primary-100); /* Assume text color matches border initially */
-        border-radius: 0.375rem; /* rounded-md */
-        font-weight: 600; /* Assume semibold like 'button' style */
-        /* Inherit padding/font-size from size variant */
+        color: var(--color-accent);
+        border-radius: var(--border-radius); /* Use global border radius */
+        font-weight: 600;
     }
     .button-link--style-outline:hover {
-        background-color: var(--btn-color-primary-800);
-        color: var(--btn-color-text-light); /* hover:text-white */
-        border-color: var(--btn-color-primary-800); /* Make border match bg on hover */
+        /* Fill with accent color on hover */
+        background-color: var(--color-accent);
+        color: var(--color-text-on-accent); /* Use text color for on-accent background */
+        border-color: var(--color-accent); /* Keep border color matching background */
     }
 </style>
