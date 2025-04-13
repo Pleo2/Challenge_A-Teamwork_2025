@@ -9,27 +9,29 @@ interface Props {
     noindex?: boolean; // Indicates to search engines not to index this specific page
 }
 
-
 const {
     title,
     description,
-    lang = 'es',
+    lang = "es",
     image, // No default image here, it will be handled below
     canonicalURL = Astro.url,
     noindex = false // By default, pages are indexable
 } = Astro.props;
 
 // Determine the content of the robots tag
-const robotsContent = noindex ? 'noindex, follow' : 'index, follow';
+const robotsContent = noindex ? "noindex, follow" : "index, follow";
 
 // Build the absolute URL for the preview image (if provided)
 // Assumes that if 'image' is not a full URL, it is a relative path from the root of the site (e.g. /og-image.png)
 // Place your default image in public/og-default.png
-const defaultOgImage = new URL('/assets/VRUME-white-with-red-dot.png', Astro.url.origin).toString();
+const defaultOgImage = new URL(
+    "/assets/VRUME-white-with-red-dot.png",
+    Astro.url.origin
+).toString();
 
 let ogImageUrl = defaultOgImage;
 if (image) {
-    if (image.startsWith('http://') || image.startsWith('https://')) {
+    if (image.startsWith("http://") || image.startsWith("https://")) {
         ogImageUrl = image; // It is already an absolute URL
     } else {
         // Assumes it is a local path (e.g., /images/my-image.jpg) and converts it to an absolute URL
@@ -37,7 +39,8 @@ if (image) {
     }
 }
 
-const finalCanonicalURL = typeof canonicalURL === 'string' ? canonicalURL : canonicalURL.toString();
+const finalCanonicalURL =
+    typeof canonicalURL === "string" ? canonicalURL : canonicalURL.toString();
 
 // Define an optional site name (you can use your brand/project name)
 const siteName = "Nombre de Mi Proyecto";
@@ -46,40 +49,52 @@ const siteName = "Nombre de Mi Proyecto";
 <!doctype html>
 <html lang={lang}>
     <head>
-        <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="generator" content={Astro.generator}>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
 
-	{/* --- SEO Core Tags --- */}
-	<title>{title}</title>
-	<meta name="description" content={description} />
-	<link rel="canonical" href={finalCanonicalURL} />
-	<meta name="robots" content={robotsContent} />
+        {/* --- SEO Core Tags --- */}
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={finalCanonicalURL} />
+        <meta name="robots" content={robotsContent} />
 
-	{/* --- Favicons (Ejemplo básico) --- */}
-	{/* Coloca tus favicons en la carpeta 'public/' */}
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-	{/* Considera usar un generador de favicons para más formatos */}
+        {/* --- Favicons (Ejemplo básico) --- */}
+        {/* Coloca tus favicons en la carpeta 'public/' */}
+        <link rel="icon" type="image/ico" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Considera usar un generador de favicons para más formatos */}
 
-	{/* --- Open Graph Tags (para redes sociales como Facebook, LinkedIn) --- */}
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={description} />
-	<meta property="og:url" content={finalCanonicalURL} />
-	<meta property="og:image" content={ogImageUrl} /> {/* URL absoluta a la imagen */}
-	<meta property="og:type" content="website" /> {/* O 'article' para posts de blog, etc. */}
-	<meta property="og:site_name" content={siteName} />
-	<meta property="og:locale" content={lang.replace('-', '_')} /> {/* Formato es_ES */}
+        {
+            /* --- Open Graph Tags (para redes sociales como Facebook, LinkedIn) --- */
+        }
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={finalCanonicalURL} />
+        <meta property="og:image" content={ogImageUrl} />
+        {/* URL absoluta a la imagen */}
+        <meta property="og:type" content="website" />
+        {/* O 'article' para posts de blog, etc. */}
+        <meta property="og:site_name" content={siteName} />
+        <meta property="og:locale" content={lang.replace("-", "_")} />
+        {/* Formato es_ES */}
 
-	{/* --- Twitter Card Tags (para Twitter) --- */}
-	<meta name="twitter:card" content={ogImageUrl ? "summary_large_image" : "summary"} /> {/* Usa imagen grande si hay */}
-	<meta name="twitter:title" content={title} />
-	<meta name="twitter:description" content={description} />
-	<meta name="twitter:image" content={ogImageUrl} /> {/* URL absoluta a la imagen */}
-	{/* Opcional: <meta name="twitter:site" content="@tuUsuarioTwitter"> */}
-	{/* Opcional: <meta name="twitter:creator" content="@autorContenidoTwitter"> */}
+        {/* --- Twitter Card Tags (para Twitter) --- */}
+        <meta
+            name="twitter:card"
+            content={ogImageUrl ? "summary_large_image" : "summary"}
+        />
+        {/* Usa imagen grande si hay */}
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageUrl} />
+        {/* URL absoluta a la imagen */}
+        {/* Opcional: <meta name="twitter:site" content="@tuUsuarioTwitter"> */}
+        {
+            /* Opcional: <meta name="twitter:creator" content="@autorContenidoTwitter"> */
+        }
 
-	{/* El resto de tus <head> elementos (links a fuentes, etc.) */}
+        {/* El resto de tus <head> elementos (links a fuentes, etc.) */}
     </head>
     <body>
         <main class="mi-clase-layout">
@@ -89,28 +104,28 @@ const siteName = "Nombre de Mi Proyecto";
 </html>
 
 <style>
-main {
-		max-width: 100%;
+    main {
+        max-width: 100%;
         width: 100%;
-		margin: 0 auto;
-}
-
-/* mobile style */
-.mi-clase-layout {
-    background-color: blue;
-}
-
-/* tablet style */
-@media (min-width: 768px) {
-    .mi-clase-layout {
-        background-color: aliceblue;
+        margin: 0 auto;
     }
-}
 
-/* desktop styles */
-@media (min-width: 1024px) {
+    /* mobile style */
     .mi-clase-layout {
-        background-color: bisque;
+        background-color: blue;
     }
-}
+
+    /* tablet style */
+    @media (min-width: 768px) {
+        .mi-clase-layout {
+            background-color: aliceblue;
+        }
+    }
+
+    /* desktop styles */
+    @media (min-width: 1024px) {
+        .mi-clase-layout {
+            background-color: bisque;
+        }
+    }
 </style>
