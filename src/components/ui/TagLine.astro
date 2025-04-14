@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+
+interface Props extends HTMLAttributes<"h2"> {
+}
+
+const { ...rest } = Astro.props
+---
+
+<h2 class="tagline" {...rest}><slot/></h2>
+
+<style>
+    .tagline {
+        font-family: var(--font-family-base);
+        padding: 0.4rem;
+        padding-inline: 2rem;
+        font-size: 1.8rem;
+        border: 2px solid var(--color-accent);
+        border-radius: 5rem;
+        letter-spacing: 0.2rem;
+    }
+</style>

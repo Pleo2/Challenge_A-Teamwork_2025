@@ -1,0 +1,30 @@
+---
+
+import type { HTMLAttributes } from 'astro/types';
+
+
+interface Props extends HTMLAttributes<"button"> {
+}
+
+const { ...rest } = Astro.props
+
+---
+
+<button class="call-to-action" {...rest}>
+    <slot/>
+</button>
+
+<style>
+    .call-to-action {
+        background-color: var(--color-bright-accent);
+        border-radius: 999px;
+        color: var(--color-text-base);
+        font-size: 2rem;
+        border: 1px solid var(--color-bright-accent);
+        font-weight: bold;
+        padding: 1rem;
+        padding-inline: 2rem;
+        letter-spacing: 0.1rem;
+
+    }
+</style>

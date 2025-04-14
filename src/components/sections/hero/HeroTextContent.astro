@@ -1,0 +1,28 @@
+---
+
+import type { HTMLAttributes } from 'astro/types';
+
+
+interface Props extends HTMLAttributes<"h3"> {
+}
+
+const { ...rest } = Astro.props
+
+---
+
+
+<h3 class="hero-text-content" {...rest}>
+    <slot/>
+</h3>
+
+<style>
+    .hero-text-content {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-family-base);
+        font-weight: 600;
+        font-size: 1.7rem;
+        opacity: 0.8;
+        line-height: 2.5rem;
+    }
+</style>

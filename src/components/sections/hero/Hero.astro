@@ -1,15 +1,25 @@
 ---
 import RoundedShape from "./RoundedShape.astro";
+import TabLine from "../../ui/TagLine.astro";
+import HeroTitle from "./HeroTitle.astro";
+import HeroTextContent from "./HeroTextContent.astro";
+import CallToAction from "../../ui/CallToAction.astro";
+
+const tagline = "Welcome to Vrume";
+const title = "Drive Profits with Targeted Advertising Solutions";
+const content =
+    "Whether you’re a seasoned marketer or just starting to scale your business, our customized online advertising strategies will accelerate your growth and drive targeted customers straight to your offers.";
+const calltoactionButton = "Apply to become an Advertiser!";
 ---
 
 <section class="hero-container">
     <RoundedShape />
     <div class="hero-content">
         <div class="main-contend">
-            <h2></h2>
-            <h1></h1>
-            <h3></h3>
-            <button></button>
+            <TabLine>{tagline}</TabLine>
+            <HeroTitle>{title}</HeroTitle>
+            <HeroTextContent>{content}</HeroTextContent>
+            <CallToAction>{calltoactionButton}</CallToAction>
         </div>
         <div class="image-container"></div>
     </div>
@@ -60,6 +70,7 @@ import RoundedShape from "./RoundedShape.astro";
         justify-content: center;
         align-items: center;
         z-index: 10;
+        padding-top: 8rem;
         /* background-color: bisque; */
         height: 100%;
         width: 100%;
@@ -70,6 +81,7 @@ import RoundedShape from "./RoundedShape.astro";
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 2.4rem;
         z-index: 10;
         height: 100%;
         width: 100%;

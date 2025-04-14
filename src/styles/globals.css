@@ -22,6 +22,7 @@
     --color-gray-medium: #383838; /* Muted text, borders */
     --color-accent: #b95135; /* Primary action/emphasis color */
     --color-dark-accent: #9d2b18;
+    --color-bright-accent: #FB5A3A;
 
     /* --- Semantic Variables (by function) --- */
     /* Backgrounds */
@@ -173,12 +174,6 @@ h4,
 h5,
 h6 {
     color: var(--color-text-heading);
-    font-family: var(
-        --font-family-heading,
-        var(--font-family-base)
-    ); /* Use heading font or fallback to base font */
-    margin: 1.5em 0 0.5em; /* Basic spacing */
-    line-height: 1.2;
 }
 
 a {
