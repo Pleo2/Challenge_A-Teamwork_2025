@@ -10,6 +10,11 @@ const title = "Drive Profits with Targeted Advertising Solutions";
 const content =
     "Whether you’re a seasoned marketer or just starting to scale your business, our customized online advertising strategies will accelerate your growth and drive targeted customers straight to your offers.";
 const calltoactionButton = "Apply to become an Advertiser!";
+
+const image: { src: string; alt: string } = {
+    src: "/assets/B&WManRed.webp",
+    alt: "Bearded man sitting cross-legged, adjusting headphones while looking at a laptop on his lap. Behind him is a red heart-shaped figure, and on the laptop, there is a red graph with an upward arrow. The image is mostly black and white."
+};
 ---
 
 <section class="hero-container">
@@ -21,7 +26,9 @@ const calltoactionButton = "Apply to become an Advertiser!";
             <HeroTextContent>{content}</HeroTextContent>
             <CallToAction>{calltoactionButton}</CallToAction>
         </div>
-        <div class="image-container"></div>
+        <div class="image-container">
+            <img class="image-b&w-man-red" src={image.src} alt={image.alt} />
+        </div>
     </div>
 </section>
 
@@ -93,6 +100,17 @@ const calltoactionButton = "Apply to become an Advertiser!";
 
     /* tablet style */
     @media (min-width: 768px) {
+        .hero-container {
+            background-color: var(--color-bg-primary);
+            height: 60dvh;
+            color: var(--color-white);
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-basis: 1;
+        }
         .hero-container::after {
             content: " ";
             position: absolute;
@@ -108,6 +126,9 @@ const calltoactionButton = "Apply to become an Advertiser!";
     }
 
     @media (min-width: 1024px) {
+        .hero-container {
+            height: 90dvh;
+        }
         .hero-container::before {
             content: " ";
             position: absolute;
@@ -133,6 +154,35 @@ const calltoactionButton = "Apply to become an Advertiser!";
             background-color: var(--color-dark-accent);
             border-radius: 9999px;
             filter: blur(12rem);
+        }
+
+        .hero-content {
+            max-width: 120rem;
+            margin: 0 auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            gap: 2rem;
+            /* background-color: rebeccapurple; */
+            justify-content: space-between;
+        }
+
+        .main-contend {
+            align-items: start;
+            flex-basis: calc(0.7 * 100%);
+            /* background-color: antiquewhite; */
+        }
+
+        .image-container {
+            /* background-color: aliceblue; */
+            display: flex;
+            flex-basis: calc(0.4 * 100%);
+            aspect-ratio: 1/1;
+        }
+
+        .image-b&w-man-red {
+            width: 100%;
+            height: 100%;
         }
     }
 </style>
