@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"h3"> {}
+
+const {...rest } = Astro.props;
+---
+
+<h3 class="section-2-title" {...rest}><slot/></h3>
+
+<style>
+    .section-2-title {
+        font-size: 5rem;
+        line-height: 4.7rem;
+        margin: 0;
+        margin-top: 2rem;
+        color: var(--color-white);
+        font-family: var(--font-family-heading);
+    }
+
+    @media (min-width: 1024px) {
+        .section-2-title {
+            margin-top: 4rem;
+        }
+    }
+</style>

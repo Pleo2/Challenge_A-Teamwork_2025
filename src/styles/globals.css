@@ -165,17 +165,6 @@ select {
     font: inherit; /* Inherits font from the body or parent container */
 }
 
-/* web's general styles */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--color-text-heading);
-}
-
 a {
     color: var(--color-link);
     text-decoration: none; /* Optional: remove underline */

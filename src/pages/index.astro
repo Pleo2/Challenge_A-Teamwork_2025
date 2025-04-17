@@ -3,6 +3,8 @@ import "../styles/globals.css";
 import MainLayout from "../layouts/MainLayout.astro";
 import Header from "../components/navigation/Header.astro";
 import Hero from "../components/sections/hero/Hero.astro";
+import Section2 from "../components/sections/section-2/Section_2.astro";
+import Section3 from "../components/sections/section-3/Section-3.astro";
 
 const pageTitle = "Welcome to Vrume";
 const pageDescription =
@@ -12,17 +14,9 @@ const shareImage = "/assets/VRUME-white-with-red-dot.webp";
 
 <MainLayout title={pageTitle} description={pageDescription} image={shareImage}>
     <Header />
-    <Hero/>
-
-    <!-- <Section_2>
-            <Card
-                title="CPC & CPL Performance Marketing"
-                description="Our performance-based marketing models give you the power to only pay for what works. Whether it’s CPC (Cost Per Click) or CPL (Cost Per Lead), our model ensures that you’reinvesting in conversions and measurable results."
-                image="/assets/cpc"
-            />
-           <Card ... />
-        </Section_2> -->
-
+    <Hero />
+    <Section2 />
+    <Section3 />
     <!--
         <Section_3>
             <Step

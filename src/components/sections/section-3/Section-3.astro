@@ -1,0 +1,125 @@
+---
+import TagLine from "../../ui/TagLine.astro";
+import Section3Steps from "./Section_3Steps.astro";
+import Section3Title from "./Section_3Title.astro";
+
+const tagline = "How Vrume Works";
+const title =
+    "Our process is designed to be simple, effective, and ROI-focused.";
+
+const steps = [
+    {
+        number: "1",
+        title: "Identify Your Audience",
+        content:
+            "Using our advanced targeting tools, we define your target audience based on demographics, behavior, and interests. Whether you’re in business marketing, mobile advertising, or native display ads, we ensure your campaigns hit the mark."
+    },
+    {
+        number: "2",
+        title: "Customize Your Campaign",
+        content:
+            "From ads branding to campaigns on Instagram or social network ads, we create tailor-made ads that resonate with your audience, ensuring that every impression counts."
+    },
+    {
+        number: "3",
+        title: "Optimize for Conversions",
+        content:
+            "Continuous monitoring and tracking conversions through detailed analytics help us fine-tune your campaigns, ensuring that your investment continues to generate results. Our expertise in media buying and ads placement ensures that your budget is being spent wisely, leading to maximum returns."
+    },
+    {
+        number: "4",
+        title: "Scale Your Success",
+        content:
+            "Once your campaigns are performing well, we work with you to scale them. Whether it’s ramping up your CPC ads, expanding affiliate partnerships, or exploring new advertising platforms online, we help you grow efficiently and sustainably."
+    }
+];
+---
+
+<section class="section_3-container">
+    <div class="section_3-content">
+        <TagLine>{tagline}</TagLine>
+        <Section3Title>{title}</Section3Title>
+        <div class="steps-container">
+            <div class="vertical-line"></div>
+            {steps.map((step) => (
+                <Section3Steps number={step.number} title={step.title} description={step.content} />
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .section_3-container {
+        background-color: var(--color-black);
+        height: max-content;
+        color: var(--color-white);
+        padding-inline: 1rem;
+        width: 100%;
+        padding-block: 4rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-basis: 1;
+    }
+
+    .section_3-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .steps-container {
+        position: relative;
+        margin-top: 4rem;
+    }
+
+    .vertical-line {
+        position: absolute;
+        left: 40px;
+        top: 80px;
+        height: 70%;
+        bottom: 0;
+        width: 2px;
+        background: var(--color-white);
+    }
+
+    @media (min-width: 768px) {
+        .steps-container {
+            width: 100%;
+            padding-inline: 2rem;
+        }
+        .vertical-line {
+            left: 7rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+
+        .section_3-container {
+            height: 60vh;
+        }
+        .vertical-line {
+            left: 10rem;
+            top: 3.75rem;
+            width: 80%;
+            height: 2px;
+        }
+        .section_3-content {
+            padding: 0;
+            margin: 0 auto;˝
+            max-width: 120rem;
+
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: row;
+            gap: 3rem;
+            padding-inline: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+</style>
