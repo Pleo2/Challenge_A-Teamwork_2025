@@ -1,50 +1,42 @@
 ---
 import TagLine from "../../ui/TagLine.astro";
 import WhiteSectionTitle from "../../ui/WhiteSection_Title.astro";
+import Carousel from "./carousel/Carousel.astro";
 
 const tagline = "Our clients love us";
 const title = "What Our Customers Have to Say";
 
-const cards = [
+export interface Testimonial {
+    content: string;
+    name: string;
+    company: string;
+}
+
+const testimonials: Testimonial[] = [
     {
-        title: "CPC & CPL Performance Marketing",
-        img: {
-            url: "/assets/CPC-CPL-Performance-Marketing.webp",
-            alt: "Illustration of CPC and CPL performance marketing"
-        },
-        info: "zOur <strong>performance-based marketing</strong> models give you the <strong>power</strong> to only pay for what works. Whether it’s <strong>CPC</strong> (Cost Per Click) or <strong>CPL</strong> (Cost Per Lead), our model ensures that you’re investing in conversions and measurable results." // Con strong tags
+        content: "Vrume has been providing us with exceptional traffic for 2 years now, they provide fantastic support and are capable to supply traffic in numerous geos. Highly recommended",
+        name: "Matt",
+        company: "Tremendio Network"
     },
     {
-        title: "Targeted Ads That Reach Your Ideal Audience",
-        img: {
-            url: "/assets/Targeted-Ads.webp",
-            alt: "Illustration of targeted ads reaching the ideal audience"
-        },
-        info: "Our advanced targeting ensures that your message reaches the <strong>right people</strong> at the <strong>right time</strong>. With <strong>native ads</strong> and <strong>targeted social media campaigns</strong>, you’re not just throwing ads out into the void — you’re speaking directly to a hand-picked audience primed to take action."
+        content: "I've been working with Vrume for quite some time now. It's been a blast so far! Strong collaboration, fast communication and all round good guys! Looking forward to see what the future will bring",
+        name: "Jarno",
+        company: "Rebll Network"
     },
     {
-        title: "Social Media & Email Marketing Expertise",
-        img: {
-            url: "/assets/Social-Media-Email-Marketing-Expertise.webp",
-            alt: "Illustration of social media and email marketing expertise"
-        },
-        info: "Leverage the power of <strong>email marketing</strong>, <strong>social networking in marketing</strong>, and <strong>affiliate strategies</strong> to build a list of loyal subscribers, followers, and buyers. We craft <strong>email campaigns</strong> that cut through the noise, driving <strong>conversions</strong> and improving <strong>customer retention</strong>."
+        content: "We have been working with Mark and his team for many years. They provide profitable traffic and excellent support. We appreciate very much our cooperation. Highly recommended!",
+        name: "Alina",
+        company: "Mirelia Networks"
     },
     {
-        title: "Affiliate Networks & Marketing",
-        img: {
-            url: "/assets/Affiliate-Networks-Marketing.webp",
-            alt: "Illustration of affiliate networks and marketing"
-        },
-        info: "Scale your business with high-performing <strong>affiliate marketing</strong> strategies. By partnering with our extensive affiliate <strong>network</strong>, you gain access to a world of <strong>qualified leads</strong> and <strong>targeted marketing opportunities</strong> that will supercharge your growth"
+        content: "Vrume has been providing MBNexus with exceptional traffic for 2 years now, they provide fantastic support and are capable to supply traffic in numerous geos. Highly recommended",
+        name: "Tarik",
+        company: "MB Nexus"
     },
     {
-        title: "Premium Traffic Sources",
-        img: {
-            url: "/assets/Premium-Traffic.webp",
-            alt: "Illustration of premium traffic sources"
-        },
-        info: "Maximize the impact of your campaigns with <strong>premium traffic</strong> that’s <strong>highly targeted</strong> and guaranteed to increase your visibility and sales. Our proprietary network of traffic sources is designed to deliver <strong>high-quality leads</strong> that convert at a higher rate"
+        content: "Been working with Vrume for years now. They really know how to keep delivering high quality traffic along with all the assistance in maximizing the results. Highly recommend Vrume to anyone who is looking for a long term stable relationship in terms of buying traffic",
+        name: "Ovation",
+        company: "Ovation"
     }
 ];
 ---
@@ -56,13 +48,7 @@ const cards = [
             >{tagline}</TagLine
         >
         <WhiteSectionTitle>{title}</WhiteSectionTitle>
-        <!-- <div class="cards-container">
-            {
-                cards.map((card, i) => (
-                    <Card title={card.title} img={card.img} info={card.info} />
-                ))
-            }
-        </div> -->
+        <Carousel testimonials={testimonials}/>
     </div>
 </section>
 
