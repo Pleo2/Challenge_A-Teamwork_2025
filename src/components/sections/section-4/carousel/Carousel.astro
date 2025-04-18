@@ -103,10 +103,7 @@ const { testimonials, ...rest } = Astro.props;
 
     // Instancia el carrusel y el plugin de autoscroll
     const autoScrollPlugin = AutoScroll({ playOnInit: true, speed: 1.5 });
-    const emblaApi = EmblaCarousel(viewportNode, OPTIONS,
-    [autoScrollPlugin]
-
-);
+    const emblaApi = EmblaCarousel(viewportNode, OPTIONS, [autoScrollPlugin]);
 
     // --- NUEVO: Iniciar en el segundo slide ---
     emblaApi.scrollTo(1);
@@ -149,7 +146,9 @@ const { testimonials, ...rest } = Astro.props;
         flex: 0 0 80%; /* Cambia de 100% a 80% para mostrar parte del siguiente slide */
         min-width: 0;
         position: relative;
-        transition: transform 0.3s, opacity 0.3s;
+        transition:
+            transform 0.3s,
+            opacity 0.3s;
     }
 
     .embla__slide__img {
