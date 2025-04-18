@@ -1,13 +1,9 @@
 ---
-import Card from "../../ui/Card.astro";
 import TagLine from "../../ui/TagLine.astro";
-import Section2Description from "./Section_2Description.astro";
 import WhiteSectionTitle from "../../ui/WhiteSection_Title.astro";
 
-const tagline = "What we do?";
-const title = "Engage, Convert, and Scale Your Business with Precision";
-const description =
-    "We don’t just offer standard advertising solutions — we help you build real connections with your audience through <strong>social media ads</strong>, <strong>affiliate marketing</strong>, and <strong>email campaigns</strong> that are tailored to your business. Here’s how we stand out.";
+const tagline = "Our clients love us";
+const title = "What Our Customers Have to Say";
 
 const cards = [
     {
@@ -53,22 +49,23 @@ const cards = [
 ];
 ---
 
+
 <section class="section_2-container">
     <div class="section_2-content">
         <TagLine textColor="var(--color-bright-accent)" paddingInline="4rem"
             >{tagline}</TagLine
         >
         <WhiteSectionTitle>{title}</WhiteSectionTitle>
-        <Section2Description text={description} />
-        <div class="cards-container">
+        <!-- <div class="cards-container">
             {
                 cards.map((card, i) => (
                     <Card title={card.title} img={card.img} info={card.info} />
                 ))
             }
-        </div>
+        </div> -->
     </div>
 </section>
+
 
 <style>
     .section_2-container {
