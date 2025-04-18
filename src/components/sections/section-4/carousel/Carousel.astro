@@ -1,56 +1,23 @@
----
-import "./embla.css";
-import { type Testimonial } from "../Section-4.astro";
-import { type HTMLAttributes } from "astro/types";
-
-interface Props extends HTMLAttributes<"div"> {
-    testimonials: Testimonial[];
-}
-
-const { testimonials, ...rest } = Astro.props;
----
-
-<div class="embla" {...rest}>
+<div class="embla">
     <div class="embla__viewport">
         <div class="embla__container">
             <div class="embla__slide">
-                <img
-                    class="embla__slide__img"
-                    src="https://picsum.photos/600/350?v=1"
-                    alt="Your alt text"
-                />
+                <div class="embla__slide__number">1</div>
             </div>
             <div class="embla__slide">
-                <img
-                    class="embla__slide__img"
-                    src="https://picsum.photos/600/350?v=2"
-                    alt="Your alt text"
-                />
+                <div class="embla__slide__number">2</div>
             </div>
             <div class="embla__slide">
-                <img
-                    class="embla__slide__img"
-                    src="https://picsum.photos/600/350?v=3"
-                    alt="Your alt text"
-                />
+                <div class="embla__slide__number">3</div>
             </div>
             <div class="embla__slide">
-                <img
-                    class="embla__slide__img"
-                    src="https://picsum.photos/600/350?v=4"
-                    alt="Your alt text"
-                />
+                <div class="embla__slide__number">4</div>
             </div>
             <div class="embla__slide">
-                <img
-                    class="embla__slide__img"
-                    src="https://picsum.photos/600/350?v=5"
-                    alt="Your alt text"
-                />
+                <div class="embla__slide__number">5</div>
             </div>
         </div>
     </div>
-
     <div class="embla__controls">
         <div class="embla__buttons">
             <button
@@ -83,11 +50,11 @@ const { testimonials, ...rest } = Astro.props;
 
 <script>
     import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
-    import AutoScroll from "embla-carousel-auto-scroll";
+    import { setupTweenScale } from "./EmblaCarouselTweenScale";
+    import { addDotBtnsAndClickHandlers } from "./EmblaCarouselDotButton";
     import { addPrevNextBtnsClickHandlers } from "./EmblaCarouselArrowButtons";
-    import { setupTweenOpacity } from "./EmblaCarouselTweenOpacity";
+    import "./embla.css";
 
-    const AUTOSCROLLTIMEOUTTIME = 200;
     const OPTIONS: EmblaOptionsType = { loop: true };
 
     const emblaNode = document.querySelector(".embla") as HTMLElement;
@@ -100,62 +67,23 @@ const { testimonials, ...rest } = Astro.props;
     const nextBtn = emblaNode.querySelector(
         ".embla__button--next"
     ) as HTMLElement;
+    const dotsNode = document.querySelector(".embla__dots") as HTMLElement;
 
-    // Instancia el carrusel y el plugin de autoscroll
-    const autoScrollPlugin = AutoScroll({ playOnInit: true, speed: 1.5 });
-    const emblaApi = EmblaCarousel(viewportNode, OPTIONS, [autoScrollPlugin]);
-
-    // --- NUEVO: Iniciar en el segundo slide ---
-    emblaApi.scrollTo(1);
-
-    // --- NUEVO: Tween Opacity & Scale ---
-    const removeTweenOpacity = setupTweenOpacity(emblaApi);
+    const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
+    const removeTweenScale = setupTweenScale(emblaApi);
 
     const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
         emblaApi,
         prevBtn,
         nextBtn
     );
+    const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
+        emblaApi,
+        dotsNode
+    );
 
-    // --- NUEVO: Pausar y reanudar autoscroll tras 5s de inactividad ---
-    let autoScrollTimeout: ReturnType<typeof setTimeout> | null = null;
-
-    function pauseAndResumeAutoScroll() {
-        emblaApi.plugins().autoScroll?.stop();
-        if (autoScrollTimeout) clearTimeout(autoScrollTimeout);
-        autoScrollTimeout = setTimeout(() => {
-            emblaApi.plugins().autoScroll?.play();
-        }, AUTOSCROLLTIMEOUTTIME);
-    }
-
-    prevBtn.addEventListener("click", pauseAndResumeAutoScroll);
-    nextBtn.addEventListener("click", pauseAndResumeAutoScroll);
+    emblaApi
+        .on("destroy", removeTweenScale)
+        .on("destroy", removePrevNextBtnsClickHandlers)
+        .on("destroy", removeDotBtnsAndClickHandlers);
 </script>
-
-<style>
-    .embla__container {
-        display: flex;
-        user-select: none;
-        -webkit-touch-callout: none;
-        -webkit-tap-highlight-color: transparent;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .embla__slide {
-        flex: 0 0 80%; /* Cambia de 100% a 80% para mostrar parte del siguiente slide */
-        min-width: 0;
-        position: relative;
-        transition:
-            transform 0.3s,
-            opacity 0.3s;
-    }
-
-    .embla__slide__img {
-        display: block;
-        width: 100%;
-        height: auto;
-        pointer-events: none;
-        user-select: none;
-    }
-</style>
