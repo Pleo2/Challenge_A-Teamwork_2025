@@ -1,0 +1,83 @@
+---
+const title: string = "About";
+const content: string =
+    "Vrume’s team has been working in the performance marketing industry since 2001. We are a passionate team of professionals that love the challenges the online space provides. We are here to help our clients and look forward to helping you.";
+const adreess: string = "Platform @ The Junction. 5 Edinburgh Rd S Guelph, Ont N1H 5N8, Canada";
+const copyright: string = "Copyright © 2024 Vrume. All rights reserved.";
+---
+
+<footer class="footer-container">
+    <div class="footer-content">
+        <section class="about-section">
+            <h1>{title}</h1>
+            <p>{content}</p>
+        </section>
+
+        <section class="social-section">
+            <h1>SOCIAL</h1>
+            <div class="logo">
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="/assets/facebook.svg" alt="Facebook" />
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="/assets/instagram.svg" alt="Instagram" />
+                </a>
+                <a href="https://www.linkedin.com/company" target="_blank">
+                    <img src="/assets/linkedin.svg" alt="LinkedIn" />
+                </a>
+                <a href="https://x.com" target="_blank">
+                    <img src="/assets/twitter.svg" alt="Twitter" />
+                </a>
+            </div>
+        </section>
+        <section class="subscribe-newsletter-section">
+
+            <h2>Subscribe to our Newsletter</h2>
+            <form>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required />
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <div class="divisor"></div>
+    <div class="footer-bottom">
+        <p>{copyright}</p>
+        <p>{adreess}</p>
+    </div>
+
+</footer>
+
+<style>
+    .footer-container {
+        background-color: var(--color-bg-secondary);
+        height: max-content;
+        color: var(--color-white);
+        padding-inline: 1rem;
+        width: 100%;
+        padding-block: 4rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-basis: 1;
+    }
+
+    .footer-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 1024px) {
+        .footer-container {
+            height: 62rem;
+        }
+    }
+</style>

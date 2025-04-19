@@ -24,6 +24,9 @@ const calltoactionButton: string =
             <CallToAction>
                 {calltoactionButton}
             </CallToAction>
+        </div>
+
+        <div class="form-container">
             <Form />
         </div>
     </div>
@@ -34,7 +37,8 @@ const calltoactionButton: string =
         background-color: var(--color-bg-primary);
         height: max-content;
         color: var(--color-white);
-        padding-inline: 2rem;
+        padding-inline: 1rem;
+        padding-bottom: 8rem;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -42,27 +46,14 @@ const calltoactionButton: string =
         flex-basis: 1;
     }
 
-    .hero-container::before {
-        content: " ";
-        position: absolute;
-        bottom: -5dvh;
-        right: 0;
-        transform:;
-        width: 30vw;
-        height: 30vw;
-        background-color: var(--color-dark-accent);
-        border-radius: 9999px;
-        filter: blur(5rem);
-    }
-
     .hero-container::after {
         content: " ";
         position: absolute;
         top: 12dvh;
-        transform: translateY(30dvh) translateX(-50%);
-        left: 0;
-        width: 60vw;
-        height: 60vw;
+        transform: translateY(30dvh) translateX(60%);
+        right: 0;
+        width: 60rem;
+        height: 60rem;
         background-color: var(--color-dark-accent);
         border-radius: 9999px;
         filter: blur(6rem);
@@ -70,7 +61,7 @@ const calltoactionButton: string =
 
     .hero-content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         z-index: 10;
@@ -92,15 +83,30 @@ const calltoactionButton: string =
         width: 100%;
     }
 
-    .image-container {
-        display: none;
+    .main-content-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.4rem;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+    }
+
+    .form-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     /* tablet style */
     @media (min-width: 768px) {
         .hero-container {
             background-color: var(--color-bg-primary);
-            height: 60dvh;
+            height: max-content;
             color: var(--color-white);
             padding: 3rem;
             text-align: center;
@@ -112,11 +118,11 @@ const calltoactionButton: string =
         .hero-container::after {
             content: " ";
             position: absolute;
-            top: 5dvh;
-            transform: translateY(30dvh) translateX(-50%);
-            left: 0;
-            width: 60vw;
-            height: 60vw;
+            top: 0;
+            transform: translateY(30vw) translateX(50%);
+            right: 0;
+            width: 50rem;
+            height: 50rem;
             background-color: var(--color-dark-accent);
             border-radius: 9999px;
             filter: blur(8rem);
@@ -125,68 +131,44 @@ const calltoactionButton: string =
 
     @media (min-width: 1024px) {
         .hero-container {
-            height: 90dvh;
-        }
-        .hero-container::before {
-            content: " ";
-            position: absolute;
-            bottom: -25rem;
-            right: 0;
-            transform: translateX(10%);
-            width: 40rem;
-            height: 40rem;
-            background-color: var(--color-dark-accent);
-            border-radius: 9999px;
-            filter: blur(6rem);
+            height: max-content;
+            padding-bottom: 10rem;
+
         }
 
         .hero-container::after {
             content: " ";
             position: absolute;
-            top: 40rem;
+            top:0;
             bottom: 0;
-            left: 0;
-            transform: translateX(-45%);
-            width: 30vw;
-            height: 30vw;
+            right: 0;
+            transform: translateX(20%);
+            width: 50vh;
+            height: 50vh;
             background-color: var(--color-dark-accent);
             border-radius: 9999px;
-            filter: blur(12rem);
+            filter: blur(10rem);
         }
 
         .hero-content {
+            flex-direction: row;
             max-width: 120rem;
             margin: 0 auto;
             padding-left: 1rem;
             padding-right: 1rem;
             display: flex;
-            gap: 2rem;
+            align-items: start;
+            gap: 10rem;
             /* background-color: rebeccapurple; */
             justify-content: space-between;
         }
 
         .main-contend {
             align-items: start;
-            flex-basis: calc(0.7 * 100%);
+            width: 100%;
+
             /* background-color: antiquewhite; */
         }
 
-        .image-container {
-            /* background-color: aliceblue; */
-            display: flex;
-            flex-basis: calc(0.4 * 100%);
-            aspect-ratio: 1/1;
-        }
 
-        .image-b&w-man-red {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    @media (min-width: 1900px) {
-        .hero-container {
-            height: 85dvh;
-        }
-    }
 </style>
