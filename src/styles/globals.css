@@ -109,6 +109,7 @@ html {
     /* font-size: 100%; */ /* 3 - Option B (comment the previous line if using this) */
     -webkit-text-size-adjust: 100%; /* 4 */
     text-size-adjust: 100%; /* 4 */
+    background-color: var(--color-bg-primary);
 }
 
 /*

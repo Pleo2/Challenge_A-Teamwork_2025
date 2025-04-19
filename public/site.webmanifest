@@ -1,0 +1,17 @@
+{
+    "name": "Vrume",
+    "short_name": "Drive Profits with Targeted Advertising Solutions",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#131313",
+    "theme_color": "#131313",
+    "description": "Whether you’re a seasoned marketer or just starting to scale your business, our customized online advertising strategies will accelerate your growth and drive targeted customers straight to your offers.",
+    "icons": [
+      {
+        "src": "/favicon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "lang": "en-US"
+  }

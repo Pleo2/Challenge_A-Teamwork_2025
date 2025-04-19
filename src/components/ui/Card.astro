@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
@@ -16,7 +17,14 @@ const { title, img, info, ...rest } = Astro.props as Props;
 <div class="card" {...rest}>
     <div class="card-content">
         <div class="img-card-container">
-            <img src={img?.url} alt={img?.alt} class="img-card" />
+            <Image
+                src={img?.url ?? ""}
+                alt={img?.alt ?? ""}
+                class="img-card"
+                height={100}
+                width={100}
+                loading="lazy"
+            />
         </div>
         <h2 class="card-title">{title}</h2>
         <p class="card-info">

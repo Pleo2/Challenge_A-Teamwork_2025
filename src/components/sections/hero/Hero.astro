@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 import RoundedShape from "./RoundedShape.astro";
 import TagLine from "../../ui/TagLine.astro";
 import HeroTitle from "./HeroTitle.astro";
@@ -13,9 +15,8 @@ const calltoactionButton = "Apply to become an Advertiser!".toUpperCase();
 
 const image: { src: string; alt: string } = {
     src: "/assets/B&WManRed.webp",
-    alt: "Bearded man sitting cross-legged, adjusting headphones while looking at a laptop on his lap. Behind him is a red heart-shaped figure, and on the laptop, there is a red graph with an upward arrow. The image is mostly black and white."
+    alt: "Bearded man sitting cross-legged, adjusting headphones while looking at a laptop on his lap. Behind him is a red heart-shaped figure, and on the laptop, there is a red graph with an upward arrow"
 };
-
 ---
 
 <section class="hero-container">
@@ -28,7 +29,14 @@ const image: { src: string; alt: string } = {
             <CallToAction>{calltoactionButton}</CallToAction>
         </div>
         <div class="image-container">
-            <img class="image-b&w-man-red" src={image.src} alt={image.alt} />
+            <Image
+                class="image-b&w-man-red"
+                src={image.src}
+                alt={image.alt}
+                width={500}
+                height={500}
+                loading="eager"
+            />
         </div>
     </div>
 </section>
@@ -192,6 +200,5 @@ const image: { src: string; alt: string } = {
         .hero-container {
             height: 85dvh;
         }
-
     }
 </style>

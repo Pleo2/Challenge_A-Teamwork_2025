@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import CallToAction from "../ui/CallToAction.astro";
 import NewLetterForm from "./NewLetterForm.astro";
 
@@ -22,31 +24,39 @@ const copyright: string = "Copyright © 2024 Vrume. All rights reserved.";
                 <h1 class="title-sections">SOCIAL</h1>
                 <div class="logos">
                     <a href="https://www.facebook.com" target="_blank">
-                        <img
+                        <Image
                             src="/assets/facebook.svg"
                             alt="Facebook"
                             style="filter: invert(1) brightness(2);"
+                            width={50}
+                            height={50}
                         />
                     </a>
                     <a href="https://www.instagram.com" target="_blank">
-                        <img
+                        <Image
                             src="/assets/instagram.svg"
                             alt="Instagram"
                             style="filter: invert(1) brightness(2);"
+                            height={50}
+                            width={50}
                         />
                     </a>
                     <a href="https://www.linkedin.com/company" target="_blank">
-                        <img
+                        <Image
                             src="/assets/linkedin.svg"
                             alt="LinkedIn"
                             style="filter: invert(1) brightness(2);"
+                            height={50}
+                            width={50}
                         />
                     </a>
                     <a href="https://x.com" target="_blank">
-                        <img
+                        <Image
                             src="/assets/twitter-alt.svg"
                             alt="x"
                             style="filter: invert(1) brightness(2);"
+                            height={50}
+                            width={50}
                         />
                     </a>
                 </div>
