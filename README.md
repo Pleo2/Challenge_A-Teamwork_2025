@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/user/dc33b9be-4484-429a-9ab9-f51a80346371/project/ab67a2ef-a7a0-4a63-a676-a865e375274d.svg)](https://wakatime.com/badge/user/dc33b9be-4484-429a-9ab9-f51a80346371/project/ab67a2ef-a7a0-4a63-a676-a865e375274d)
+
 <p align="center">
   <img src="./public/assets/logo-vrume.png" alt="Logo Vrume" width="280"/>
 </p>
