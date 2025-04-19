@@ -6,10 +6,10 @@ interface Props extends HTMLAttributes<"h3"> {}
 const {...rest } = Astro.props;
 ---
 
-<h3 class="section-3-title" {...rest}><slot/></h3>
+<h3 class="section-5-title" {...rest}><slot/></h3>
 
 <style>
-    .section-3-title {
+    .section-5-title {
         font-size: 5rem;
         line-height: 4.7rem;
         margin: 0;
@@ -19,7 +19,7 @@ const {...rest } = Astro.props;
     }
 
     @media (min-width: 1024px) {
-        .section-3-title {
+        .section-5-title {
             margin-top: 4rem;
         }
     }

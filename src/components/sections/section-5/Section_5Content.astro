@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"p"> {
+    text: string;
+}
+
+const { text, ...rest } = Astro.props;
+---
+
+<p class="section-5-content" {...rest}>
+    <Fragment set:html={text} />
+</p>
+
+<style>
+    .section-5-content {
+        text-align: left;
+        margin: 0;
+        margin-top: 2rem;
+        padding: 0;
+        font-family: var(--font-family-base);
+        font-weight: 600;
+        font-size: 1.7rem;
+        opacity: 0.8;
+        line-height: 2.5rem;
+        color: var(--color-primary);
+    }
+
+    @media (min-width: 1024px) {
+        .section-2-content {
+            width: 90%;
+            font-size: 1.9rem;
+            line-height: 2.2rem;
+            font-weight: 400;
+        }
+    }
+</style>

@@ -81,7 +81,7 @@ const { testimonials } = Astro.props as Props;
     const dotsNode = document.querySelector(".embla__dots") as HTMLElement;
 
     const emblaApi = EmblaCarousel(viewportNode, OPTIONS, [
-        Autoplay({ delay: 1500 })
+        Autoplay({ delay: 1000 })
     ]);
     let autoScrollTimeout: ReturnType<typeof setTimeout> | null = null;
 

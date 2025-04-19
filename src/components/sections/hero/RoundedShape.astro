@@ -65,6 +65,20 @@
         }
     }
 
+    @media (min-width: 1900px) {
+        .rounded-shape-2 {
+            display: block;
+            position: absolute;
+            bottom: -35vh;
+            right: 10vw;
+            width: 60rem;
+            height: 60rem;
+            object-fit: cover;
+            opacity: 0.8;
+            animation: rotateAnimation 20s linear infinite;
+        }
+    }
+
     @keyframes rotateAnimation {
         from {
             transform: rotate(0deg);

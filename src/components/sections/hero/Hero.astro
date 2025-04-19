@@ -1,6 +1,6 @@
 ---
 import RoundedShape from "./RoundedShape.astro";
-import TabLine from "../../ui/TagLine.astro";
+import TagLine from "../../ui/TagLine.astro";
 import HeroTitle from "./HeroTitle.astro";
 import HeroTextContent from "./HeroTextContent.astro";
 import CallToAction from "../../ui/CallToAction.astro";
@@ -15,13 +15,14 @@ const image: { src: string; alt: string } = {
     src: "/assets/B&WManRed.webp",
     alt: "Bearded man sitting cross-legged, adjusting headphones while looking at a laptop on his lap. Behind him is a red heart-shaped figure, and on the laptop, there is a red graph with an upward arrow. The image is mostly black and white."
 };
+
 ---
 
 <section class="hero-container">
     <RoundedShape />
     <div class="hero-content">
         <div class="main-contend">
-            <TabLine>{tagline}</TabLine>
+            <TagLine>{tagline}</TagLine>
             <HeroTitle>{title}</HeroTitle>
             <HeroTextContent>{content}</HeroTextContent>
             <CallToAction>{calltoactionButton}</CallToAction>
@@ -79,6 +80,7 @@ const image: { src: string; alt: string } = {
         z-index: 10;
         padding-top: 8rem;
         /* background-color: bisque; */
+        transform: translateY(-1%);
         height: 100%;
         width: 100%;
     }
@@ -184,5 +186,12 @@ const image: { src: string; alt: string } = {
             width: 100%;
             height: 100%;
         }
+    }
+
+    @media (min-width: 1900px) {
+        .hero-container {
+            height: 85dvh;
+        }
+
     }
 </style>

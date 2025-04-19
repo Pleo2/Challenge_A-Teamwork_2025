@@ -1,0 +1,192 @@
+---
+import CallToAction from "../../ui/CallToAction.astro";
+import TagLine from "../../ui/TagLine.astro";
+import Section5Content from "./Section_5Content.astro";
+import Section5Title from "./Section_5Title.astro";
+import Form from "./Form.astro";
+
+const tagline: string = "Contact Us";
+const title: string = "Get Started Today";
+const content: string =
+    "Ready to elevate your advertising game? Join the hundreds of businesses already driving success with <strong>VRUME’s targeted advertising solutions</strong>. Whether you’re focused on <strong>email ads, Instagram ads,</strong> or <strong>affiliate marketing,</strong> we’ve got the expertise and resources to help you succeed.";
+const calltoactionButton: string =
+    "Apply to become an Advertiser!".toUpperCase();
+---
+
+<section class="hero-container">
+    <!-- rounded background color  -->
+
+    <div class="hero-content">
+        <div class="main-contend">
+            <TagLine>{tagline}</TagLine>
+            <Section5Title>{title}</Section5Title>
+            <Section5Content text={content} />
+            <CallToAction>
+                {calltoactionButton}
+            </CallToAction>
+            <Form />
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-container {
+        background-color: var(--color-bg-primary);
+        height: max-content;
+        color: var(--color-white);
+        padding-inline: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-basis: 1;
+    }
+
+    .hero-container::before {
+        content: " ";
+        position: absolute;
+        bottom: -5dvh;
+        right: 0;
+        transform:;
+        width: 30vw;
+        height: 30vw;
+        background-color: var(--color-dark-accent);
+        border-radius: 9999px;
+        filter: blur(5rem);
+    }
+
+    .hero-container::after {
+        content: " ";
+        position: absolute;
+        top: 12dvh;
+        transform: translateY(30dvh) translateX(-50%);
+        left: 0;
+        width: 60vw;
+        height: 60vw;
+        background-color: var(--color-dark-accent);
+        border-radius: 9999px;
+        filter: blur(6rem);
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        padding-top: 8rem;
+        /* background-color: bisque; */
+        transform: translateY(-1%);
+        height: 100%;
+        width: 100%;
+    }
+
+    .main-contend {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.4rem;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+    }
+
+    .image-container {
+        display: none;
+    }
+
+    /* tablet style */
+    @media (min-width: 768px) {
+        .hero-container {
+            background-color: var(--color-bg-primary);
+            height: 60dvh;
+            color: var(--color-white);
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-basis: 1;
+        }
+        .hero-container::after {
+            content: " ";
+            position: absolute;
+            top: 5dvh;
+            transform: translateY(30dvh) translateX(-50%);
+            left: 0;
+            width: 60vw;
+            height: 60vw;
+            background-color: var(--color-dark-accent);
+            border-radius: 9999px;
+            filter: blur(8rem);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hero-container {
+            height: 90dvh;
+        }
+        .hero-container::before {
+            content: " ";
+            position: absolute;
+            bottom: -25rem;
+            right: 0;
+            transform: translateX(10%);
+            width: 40rem;
+            height: 40rem;
+            background-color: var(--color-dark-accent);
+            border-radius: 9999px;
+            filter: blur(6rem);
+        }
+
+        .hero-container::after {
+            content: " ";
+            position: absolute;
+            top: 40rem;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-45%);
+            width: 30vw;
+            height: 30vw;
+            background-color: var(--color-dark-accent);
+            border-radius: 9999px;
+            filter: blur(12rem);
+        }
+
+        .hero-content {
+            max-width: 120rem;
+            margin: 0 auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            gap: 2rem;
+            /* background-color: rebeccapurple; */
+            justify-content: space-between;
+        }
+
+        .main-contend {
+            align-items: start;
+            flex-basis: calc(0.7 * 100%);
+            /* background-color: antiquewhite; */
+        }
+
+        .image-container {
+            /* background-color: aliceblue; */
+            display: flex;
+            flex-basis: calc(0.4 * 100%);
+            aspect-ratio: 1/1;
+        }
+
+        .image-b&w-man-red {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media (min-width: 1900px) {
+        .hero-container {
+            height: 85dvh;
+        }
+    }
+</style>
