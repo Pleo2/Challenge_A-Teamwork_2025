@@ -9,7 +9,6 @@
 # Vrume – High-Impact Digital Advertising
 
 ## Table of Contents
-- [Live Demo](#live-demo)
 - [Description](#description)
 - [Key Features](#key-features)
 - [Why Astro?](#why-astro)
@@ -199,7 +198,6 @@ You can check the full license files in the `/public/fonts/` folder.
 # Vrume – Publicidad Digital de Alto Impacto
 
 ## Tabla de Contenidos
-- [Ver Demo Online](#ver-demo-online)
 - [Descripción](#descripción)
 - [Características Destacadas](#características-destacadas)
 - [¿Por qué Astro?](#¿por-qué-astro)
