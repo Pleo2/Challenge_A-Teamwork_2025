@@ -2,6 +2,185 @@
   <img src="./public/assets/logo-vrume.png" alt="Logo Vrume" width="280"/>
 </p>
 
+
+# Vrume – High-Impact Digital Advertising
+
+> Technical test project for a job interview.
+> Demonstrates best practices, modern architecture, and professional use of Astro.
+
+## Description
+
+Vrume is a landing page aimed at attracting clients for digital advertising services. The project's goal is to showcase the ability to build fast, accessible, scalable, and SEO-optimized web solutions using Astro and frontend best practices.
+
+## Key Features
+
+- **Superior performance:** Astro removes unnecessary JavaScript, achieving ultra-fast load times.
+- **Advanced SEO:** Dynamic meta tags, semantic structure, and integrated sitemap.
+- **Accessibility:** Proper tags, readable fonts, and adequate contrast.
+- **Componentization:** Architecture based on reusable components and clear layouts.
+- **Modern styles:** Use of CSS custom properties, local fonts, and modular organization to reflect my skill with native CSS.
+- **Production-ready:** Scripts for build, preview, and easy deployment.
+- **Scalability:** Structure ready to grow or integrate new features.
+
+## Why Astro?
+
+Astro is ideal for this type of project because:
+
+- It serves only the necessary code, optimizing performance.
+- It facilitates the integration of modern frameworks if required.
+- It offers SSR/SSG, ideal for landing pages and high-traffic sites.
+- It promotes best practices by default (accessibility, SEO, modularity).
+- It keeps the code clean and easy to maintain.
+
+## Applied Best Practices
+
+- Clear and scalable folder structure.
+- Use of CSS variables and local fonts.
+- Separation of concerns: layouts, components, styles, and pages.
+- Updated version and dependency control.
+- Configuration files for robots and manifest.
+- Well-commented and readable code.
+
+## SEO Optimization
+
+One of the main strengths of this project is advanced SEO optimization, implemented directly in [`src/layouts/MainLayout.astro`](./src/layouts/MainLayout.astro). Meta tags, title, description, share image (Open Graph/Twitter), and canonical tag are managed dynamically, ensuring each page is perfectly prepared for search engines and social networks.
+
+**Highlighted code snippet:**
+
+```astro
+// src/layouts/MainLayout.astro
+const {
+    title,
+    description,
+    lang = "es",
+    image,
+    canonicalURL = Astro.url,
+    noindex = false
+} = Astro.props;
+
+const robotsContent = noindex ? "noindex, follow" : "index, follow";
+const defaultOgImage = new URL(
+    "/assets/VRUME-white-with-red-dot.png",
+    Astro.url.origin
+).toString();
+let ogImageUrl = image ? new URL(image, Astro.url.origin).toString() : defaultOgImage;
+const finalCanonicalURL = typeof canonicalURL === "string" ? canonicalURL : canonicalURL.toString();
+---
+<html lang={lang}>
+  <head>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={finalCanonicalURL} />
+    <meta name="robots" content={robotsContent} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <!-- ... -->
+  </head>
+  <!-- ... -->
+</html>
+```
+
+Thanks to this approach, every page of the site is optimized for search engines and social networks, improving the project's visibility and reach.
+
+## Image and Visual Resource Optimization
+
+The project stands out for thorough optimization of images and visual resources, reducing the total image weight from **10.8 MB to approximately 1 MB**. This drastically improves load times and user experience.
+
+- **Optimized images:** All images were compressed and converted to modern formats (WebP) without sacrificing visual quality.
+- **Lazy loading:** Deferred loading (`loading="lazy"`) was implemented for all non-critical images, improving performance and LCP.
+- **Native backgrounds and gradients:** CSS native animations and gradients were used instead of external images, as seen in [`RoundedShape.astro`](./src/components/sections/hero/RoundedShape.astro) and [`Hero.astro`](./src/components/sections/hero/Hero.astro).
+
+**Example of lazy loading and use of the Astro Image component:**
+
+```astro
+<Image
+  src="/assets/ejemplo.webp"
+  alt="Image description"
+  width={400}
+  height={300}
+  loading="lazy"
+/>
+```
+
+**Example of animated background and native CSS gradient:**
+
+```css
+.hero-container::before {
+  content: " ";
+  position: absolute;
+  bottom: -5dvh;
+  right: 0;
+  width: 30vw;
+  height: 30vw;
+  background: radial-gradient(circle, var(--color-dark-accent) 60%, transparent 100%);
+  border-radius: 9999px;
+  filter: blur(5rem);
+}
+```
+
+**Snippet from `RoundedShape.astro`:**
+
+```astro
+<Image
+  src="/assets/Rounded shape.webp"
+  alt="Hero rounded geometric shape 1"
+  class="rounded-shape-1"
+  width={100}
+  height={100}
+  loading="eager"
+/>
+```
+
+Thanks to these techniques, the website offers an attractive, fast, and modern visual experience, maximizing performance without relying on external resources.
+
+## Usage Example
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/vrume.git
+cd vrume
+
+# Install dependencies
+pnpm install --force
+
+# Start the development server
+pnpm run dev
+
+# Build the production version
+pnpm run build
+
+# Preview the generated site
+pnpm run preview
+```
+
+## Dependencies Used
+
+- **astro**: Main framework for modern web development, SSR/SSG, resource optimization, and SEO.
+- **embla-carousel**: Library for accessible and responsive carousels and sliders.
+- **embla-carousel-auto-scroll**: Extension for auto-scroll in carousels, enhancing the visual experience.
+- **embla-carousel-autoplay**: Extension for autoplay in carousels, ideal for banners or testimonials.
+
+> Other internal dependencies: `esbuild` and `sharp` (used in build and image optimization).
+
+## Licenses
+
+### Project and main dependencies
+
+- This project is licensed under the **MIT** license.
+- Astro and all used libraries are under compatible open source licenses.
+
+### Fonts
+
+- **Roboto**: Licensed under the [SIL Open Font License 1.1](./public/fonts/OFL-Roboto.txt)
+  Copyright 2011 The Roboto Project Authors
+- **Bebas Neue**: Licensed under the [SIL Open Font License 1.1](./public/fonts/OFL-BebasNeue.txt)
+  Copyright 2010 by Dharma Type
+
+You can check the full license files in the `/public/fonts/` folder.
+
+---
+
 # Vrume – Publicidad Digital de Alto Impacto
 
 > Proyecto de prueba técnica para entrevista laboral.
@@ -173,9 +352,10 @@ pnpm run preview
 
 ### Fuentes tipográficas
 
-- **Roboto**: Licenciada bajo la [SIL Open Font License 1.1](./public/fonts/OFL-Roboto.txt)  
+- **Roboto**: Licenciada bajo la [SIL Open Font License 1.1](./public/fonts/OFL-Roboto.txt)
   Copyright 2011 The Roboto Project Authors
-- **Bebas Neue**: Licenciada bajo la [SIL Open Font License 1.1](./public/fonts/OFL-BebasNeue.txt)  
+- **Bebas Neue**: Licenciada bajo la [SIL Open Font License 1.1](./public/fonts/OFL-BebasNeue.txt)
   Copyright 2010 by Dharma Type
 
 Puedes consultar los archivos de licencia completos en la carpeta `/public/fonts/`.
+
