@@ -1,0 +1,155 @@
+---
+import TagLine from "../../ui/TagLine.astro";
+import WhiteSectionTitle from "../../ui/WhiteSection_Title.astro";
+import Carousel from "./carousel/Carousel.astro";
+
+const tagline = "Our clients love us";
+const title = "What Our Customers Have to Say";
+
+export interface Testimonial {
+    content: string;
+    name: string;
+    company: string;
+}
+
+const testimonials: Testimonial[] = [
+    {
+        content:
+            "Vrume has been providing us with exceptional traffic for 2 years now, they provide fantastic support and are capable to supply traffic in numerous geos. Highly recommended",
+        name: "Matt",
+        company: "Tremendio Network"
+    },
+    {
+        content:
+            "I've been working with Vrume for quite some time now. It's been a blast so far! Strong collaboration, fast communication and all round good guys! Looking forward to see what the future will bring",
+        name: "Jarno",
+        company: "Rebll Network"
+    },
+    {
+        content:
+            "We have been working with Mark and his team for many years. They provide profitable traffic and excellent support. We appreciate very much our cooperation. Highly recommended!",
+        name: "Alina",
+        company: "Mirelia Networks"
+    },
+    {
+        content:
+            "Vrume has been providing MBNexus with exceptional traffic for 2 years now, they provide fantastic support and are capable to supply traffic in numerous geos. Highly recommended",
+        name: "Tarik",
+        company: "MB Nexus"
+    },
+    {
+        content:
+            "Been working with Vrume for years now. They really know how to keep delivering high quality traffic along with all the assistance in maximizing the results. Highly recommend Vrume to anyone who is looking for a long term stable relationship in terms of buying traffic",
+        name: "Ovation",
+        company: "Ovation"
+    },
+    {
+        content:
+            "We have been using Vrume for years! Solid clicks, solid service and solid ROI",
+        name: "Primary Marketing BV",
+        company: "Primary Marketing"
+    },
+    {
+        content:
+            "I have worked with Vrume for 2+ years and it’s been a great experience. He provides high-quality traffic for multiple geos, is easy to work with, and always delivers on time.",
+        name: "Marinus",
+        company: "Admolly"
+    },
+    {
+        content:
+            "I have worked with Mark and his team from Vrume since 2005. They know how to drive quality traffic and work with their buyers to get results.",
+        name: "Daniel",
+        company: "AdWorldMedia"
+    }
+];
+---
+
+<div class="section-4">
+    <section class="section-4-container">
+        <div class="section-4-content">
+            <TagLine textColor="var(--color-bright-accent)" paddingInline="4rem"
+                >{tagline}</TagLine
+            >
+            <WhiteSectionTitle>{title}</WhiteSectionTitle>
+        </div>
+    </section>
+    <Carousel testimonials={testimonials} />
+</div>
+
+<style>
+    .section-4 {
+        padding-bottom: 10rem;
+    }
+    .section-4-container {
+        background-color: var(--color-white);
+        height: max-content;
+        color: var(--color-white);
+        padding-inline: 1rem;
+        width: 100%;
+        padding-block: 4rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-basis: 1;
+    }
+
+    .section-4-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .cards-container {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 30vw;
+        gap: 30vw;
+        margin-bottom: 10vw;
+    }
+
+    @media (min-width: 768px) {
+        .section-4-container {
+            padding-inline: 4rem;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-row: auto;
+            gap: 4rem;
+            margin-top: 5rem;
+        }
+
+        .cards-container > :last-child:nth-child(odd) {
+            transform: translateX(63%);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .section-4-container {
+            max-width: 120rem;
+            margin: 0 auto;
+            padding: 0;
+            padding-block: 4rem;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 3rem;
+            padding-inline: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cards-container > :last-child:nth-child(odd) {
+            transform: translateX(0%);
+        }
+    }
+</style>

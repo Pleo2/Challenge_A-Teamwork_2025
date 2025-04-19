@@ -22,7 +22,7 @@
     --color-gray-medium: #383838; /* Muted text, borders */
     --color-accent: #b95135; /* Primary action/emphasis color */
     --color-dark-accent: #9d2b18;
-    --color-bright-accent: #FB5A3A;
+    --color-bright-accent: #fb5a3a;
 
     /* --- Semantic Variables (by function) --- */
     /* Backgrounds */
@@ -87,6 +87,10 @@
         "Open Sans", "Helvetica Neue", sans-serif;
     --transition-duration: 0.2s;
     --border-radius: 0.375rem;
+
+    --slide-height: 50rem;
+    --slide-spacing: 0rem;
+    --slide-size: 80%;
 }
 
 /*

@@ -1,21 +1,30 @@
+---
+import "./embla.css";
+import { type Testimonial } from "../Section-4.astro";
+import TestimonialCards from "../TestimonialCards.astro";
+interface Props {
+    testimonials: Testimonial[];
+}
+
+const { testimonials } = Astro.props as Props;
+---
+
 <div class="embla">
     <div class="embla__viewport">
         <div class="embla__container">
-            <div class="embla__slide">
-                <div class="embla__slide__number">1</div>
-            </div>
-            <div class="embla__slide">
-                <div class="embla__slide__number">2</div>
-            </div>
-            <div class="embla__slide">
-                <div class="embla__slide__number">3</div>
-            </div>
-            <div class="embla__slide">
-                <div class="embla__slide__number">4</div>
-            </div>
-            <div class="embla__slide">
-                <div class="embla__slide__number">5</div>
-            </div>
+            {
+                testimonials.map((testimonial) => (
+                    <div class="embla__slide">
+                        <div class="embla__slide__number">
+                            <TestimonialCards
+                                name={testimonial.name}
+                                content={testimonial.content}
+                                company={testimonial.company}
+                            />
+                        </div>
+                    </div>
+                ))
+            }
         </div>
     </div>
     <div class="embla__controls">
@@ -53,8 +62,10 @@
     import { setupTweenScale } from "./EmblaCarouselTweenScale";
     import { addDotBtnsAndClickHandlers } from "./EmblaCarouselDotButton";
     import { addPrevNextBtnsClickHandlers } from "./EmblaCarouselArrowButtons";
-    import "./embla.css";
+    import { setupTweenOpacity } from "./EmblaCarouselTweenOpacity";
+    import Autoplay from "embla-carousel-autoplay";
 
+    const AUTOSCROLLTIMEOUTTIME = 200;
     const OPTIONS: EmblaOptionsType = { loop: true };
 
     const emblaNode = document.querySelector(".embla") as HTMLElement;
@@ -69,8 +80,25 @@
     ) as HTMLElement;
     const dotsNode = document.querySelector(".embla__dots") as HTMLElement;
 
-    const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
+    const emblaApi = EmblaCarousel(viewportNode, OPTIONS, [
+        Autoplay({ delay: 1500 })
+    ]);
+    let autoScrollTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    function pauseAndResumeAutoScroll() {
+        const autoplay = emblaApi.plugins().autoplay as Autoplay;
+        autoplay.stop();
+        if (autoScrollTimeout) clearTimeout(autoScrollTimeout);
+        autoScrollTimeout = setTimeout(() => {
+            autoplay.play();
+        }, AUTOSCROLLTIMEOUTTIME);
+    }
+
+    prevBtn.addEventListener("click", pauseAndResumeAutoScroll);
+    nextBtn.addEventListener("click", pauseAndResumeAutoScroll);
+
     const removeTweenScale = setupTweenScale(emblaApi);
+    const removeTweenOpacity = setupTweenOpacity(emblaApi);
 
     const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
         emblaApi,
@@ -85,5 +113,7 @@
     emblaApi
         .on("destroy", removeTweenScale)
         .on("destroy", removePrevNextBtnsClickHandlers)
-        .on("destroy", removeDotBtnsAndClickHandlers);
+        .on("destroy", removeDotBtnsAndClickHandlers)
+        .on("scroll", pauseAndResumeAutoScroll)
+        .on("destroy", removeTweenOpacity);
 </script>

@@ -1,23 +1,16 @@
 import { type EmblaCarouselType, type EmblaEventType } from 'embla-carousel'
 
-const TWEEN_FACTOR_BASE = 0.10
+const TWEEN_FACTOR_BASE = 0.50
 let tweenFactor = 0
-let tweenNodes: HTMLElement[] = []
 
 const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
-
-const setTweenNodes = (emblaApi: EmblaCarouselType): void => {
-  tweenNodes = emblaApi.slideNodes().map((slideNode) => {
-    return slideNode.querySelector('.embla__slide__number') as HTMLElement
-  })
-}
 
 const setTweenFactor = (emblaApi: EmblaCarouselType): void => {
   tweenFactor = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
 }
 
-const tweenScale = (
+const tweenOpacity = (
   emblaApi: EmblaCarouselType,
   eventName?: EmblaEventType
 ): void => {
@@ -51,26 +44,27 @@ const tweenScale = (
       }
 
       const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor)
-      const scale = numberWithinRange(tweenValue, 0, 1).toString()
-      const tweenNode = tweenNodes[slideIndex]
-      tweenNode.style.transform = `scale(${scale})`
+      const opacity = numberWithinRange(tweenValue, 0, 1).toString()
+      emblaApi.slideNodes()[slideIndex].style.opacity = opacity
     })
   })
 }
 
-export const setupTweenScale = (emblaApi: EmblaCarouselType): (() => void) => {
-  setTweenNodes(emblaApi)
+export const setupTweenOpacity = (
+  emblaApi: EmblaCarouselType
+): (() => void) => {
+  const slideNodes = emblaApi.slideNodes()
+
   setTweenFactor(emblaApi)
-  tweenScale(emblaApi)
+  tweenOpacity(emblaApi)
 
   emblaApi
-    .on('reInit', setTweenNodes)
     .on('reInit', setTweenFactor)
-    .on('reInit', tweenScale)
-    .on('scroll', tweenScale)
-    .on('slideFocus', tweenScale)
+    .on('reInit', tweenOpacity)
+    .on('scroll', tweenOpacity)
+    .on('slideFocus', tweenOpacity)
 
   return (): void => {
-    tweenNodes.forEach((slide) => slide.removeAttribute('style'))
+    slideNodes.forEach((slide) => slide.removeAttribute('style'))
   }
 }
