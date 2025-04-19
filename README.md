@@ -83,6 +83,57 @@ const finalCanonicalURL = typeof canonicalURL === "string" ? canonicalURL : cano
 
 Gracias a este enfoque, cada página del sitio está optimizada para buscadores y redes sociales, mejorando la visibilidad y el alcance del proyecto.
 
+## Optimización de Imágenes y Recursos Visuales
+
+El proyecto destaca por una optimización exhaustiva de imágenes y recursos visuales, logrando reducir el peso total de imágenes de **10.8 MB a aproximadamente 1 MB**. Esto mejora drásticamente el tiempo de carga y la experiencia del usuario.
+
+- **Imágenes optimizadas:** Todas las imágenes fueron comprimidas y convertidas a formatos modernos (WebP) sin sacrificar calidad visual.
+- **Lazy loading:** Se implementó carga diferida (`loading="lazy"`) en todas las imágenes no críticas, mejorando el rendimiento y el LCP.
+- **Fondos y degradados nativos:** Se emplearon animaciones y degradados CSS nativos en vez de imágenes externas, como se aprecia en [`RoundedShape.astro`](./src/components/sections/hero/RoundedShape.astro) y [`Hero.astro`](./src/components/sections/hero/Hero.astro).
+
+**Ejemplo de lazy loading y uso del componente Image de Astro:**
+
+```astro
+<Image
+  src="/assets/ejemplo.webp"
+  alt="Descripción de la imagen"
+  width={400}
+  height={300}
+  loading="lazy"
+/>
+```
+
+**Ejemplo de fondo animado y degradado nativo en CSS:**
+
+```css
+.hero-container::before {
+  content: " ";
+  position: absolute;
+  bottom: -5dvh;
+  right: 0;
+  width: 30vw;
+  height: 30vw;
+  background: radial-gradient(circle, var(--color-dark-accent) 60%, transparent 100%);
+  border-radius: 9999px;
+  filter: blur(5rem);
+}
+```
+
+**Fragmento de uso en `RoundedShape.astro`:**
+
+```astro
+<Image
+  src="/assets/Rounded shape.webp"
+  alt="Hero rounded geometric shape 1"
+  class="rounded-shape-1"
+  width={100}
+  height={100}
+  loading="eager"
+/>
+```
+
+Gracias a estas técnicas, la web ofrece una experiencia visual atractiva, rápida y moderna, maximizando el rendimiento sin depender de recursos externos.
+
 ## Ejemplo de Uso
 
 ```bash
@@ -101,3 +152,30 @@ pnpm run build
 
 # Previsualiza el sitio generado
 pnpm run preview
+
+```
+
+## Dependencias Utilizadas
+
+- **astro**: Framework principal para desarrollo web moderno, SSR/SSG, optimización de recursos y SEO.
+- **embla-carousel**: Librería para carruseles y sliders accesibles y responsivos.
+- **embla-carousel-auto-scroll**: Extensión para auto-scroll en carruseles, mejora la experiencia visual.
+- **embla-carousel-autoplay**: Extensión para autoplay en carruseles, ideal para banners o testimonios.
+
+> Otras dependencias internas: `esbuild` y `sharp` (utilizadas en build y optimización de imágenes).
+
+## Licencias
+
+### Proyecto y dependencias principales
+
+- Este proyecto está bajo licencia **MIT**.
+- Astro y todas las librerías utilizadas están bajo licencias open source compatibles.
+
+### Fuentes tipográficas
+
+- **Roboto**: Licenciada bajo la [SIL Open Font License 1.1](./public/fonts/OFL-Roboto.txt)  
+  Copyright 2011 The Roboto Project Authors
+- **Bebas Neue**: Licenciada bajo la [SIL Open Font License 1.1](./public/fonts/OFL-BebasNeue.txt)  
+  Copyright 2010 by Dharma Type
+
+Puedes consultar los archivos de licencia completos en la carpeta `/public/fonts/`.

@@ -2,95 +2,78 @@
 
 /* Local font configuration */
 @font-face {
-    font-family: "Roboto";
-    src: url("/fonts/Roboto-VariableFont_wdth,wght.ttf")
-        format("truetype-variations");
-    font-weight: 1 999;
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype-variations");
+  font-weight: 1 999;
 }
 
 @font-face {
-    font-family: "Bebas Neue";
-    src: url("/fonts/BebasNeue-Regular.ttf") format("truetype");
-    font-weight: 500;
-    font-style: normal;
+  font-family: "Bebas Neue";
+  src: url("/fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
 }
 :root {
-    /* --- Base Palette --- */
-    --color-white: #ffffff;
-    --color-black: #171516; /* Main dark background */
-    --color-gray-dark: #272727; /* Primary text (on light), secondary backgrounds */
-    --color-gray-medium: #383838; /* Muted text, borders */
-    --color-accent: #b95135; /* Primary action/emphasis color */
-    --color-dark-accent: #9d2b18;
-    --color-bright-accent: #FB5A3A;
+  /* --- Base Palette --- */
+  --color-white: #ffffff;
+  --color-black: #171516; /* Main dark background */
+  --color-gray-dark: #272727; /* Primary text (on light), secondary backgrounds */
+  --color-gray-medium: #383838; /* Muted text, borders */
+  --color-accent: #b95135; /* Primary action/emphasis color */
+  --color-dark-accent: #9d2b18;
+  --color-bright-accent: #fb5a3a;
 
-    /* --- Semantic Variables (by function) --- */
-    /* Backgrounds */
-    --color-bg-primary: var(--color-black); /* Main website background */
-    --color-bg-secondary: var(
-        --color-gray-dark
-    ); /* For slightly distinct sections */
-    --color-bg-card: var(
-        --color-white
-    ); /* Background for cards or light sections */
-    --color-bg-accent: var(--color-accent); /* Background using accent color */
+  /* --- Semantic Variables (by function) --- */
+  /* Backgrounds */
+  --color-bg-primary: var(--color-black); /* Main website background */
+  --color-bg-secondary: var(--color-gray-dark); /* For slightly distinct sections */
+  --color-bg-card: var(--color-white); /* Background for cards or light sections */
+  --color-bg-accent: var(--color-accent); /* Background using accent color */
 
-    /* Text */
-    --color-text-base: var(--color-white); /* Primary text on dark background */
-    --color-text-heading: var(
-        --color-white
-    ); /* Headings on primary background */
-    --color-text-muted: var(
-        --color-gray-medium
-    ); /* Secondary/muted text on primary background */
-    --color-text-accent: var(--color-accent); /* Text using the accent color */
-    --color-text-inverted: var(
-        --color-gray-dark
-    ); /* Primary text on light backgrounds/cards */
-    --color-text-inverted-muted: var(
-        --color-gray-medium
-    ); /* Muted text on light backgrounds/cards */
-    --color-text-on-accent: var(
-        --color-white
-    ); /* Text on accent-colored backgrounds (e.g., buttons) */
+  /* Text */
+  --color-text-base: var(--color-white); /* Primary text on dark background */
+  --color-text-heading: var(--color-white); /* Headings on primary background */
+  --color-text-muted: var(--color-gray-medium); /* Secondary/muted text on primary background */
+  --color-text-accent: var(--color-accent); /* Text using the accent color */
+  --color-text-inverted: var(--color-gray-dark); /* Primary text on light backgrounds/cards */
+  --color-text-inverted-muted: var(--color-gray-medium); /* Muted text on light backgrounds/cards */
+  --color-text-on-accent: var(
+    --color-white
+  ); /* Text on accent-colored backgrounds (e.g., buttons) */
 
-    /* Borders */
-    --color-border: var(
-        --color-gray-medium
-    ); /* Default border color (e.g., cards) */
-    --color-border-accent: var(--color-accent); /* Border using accent color */
+  /* Borders */
+  --color-border: var(--color-gray-medium); /* Default border color (e.g., cards) */
+  --color-border-accent: var(--color-accent); /* Border using accent color */
 
-    /* Actions and Links */
-    --color-link: var(--color-accent);
-    --color-link-hover: color-mix(
-        in srgb,
-        var(--color-accent) 90%,
-        white
-    ); /* Slightly lighter on hover */
-    --color-button-primary-bg: var(--color-accent);
-    --color-button-primary-text: var(--color-text-on-accent);
-    --color-button-primary-hover-bg: var(
-        --color-link-hover
-    ); /* Use the same hover as links */
+  /* Actions and Links */
+  --color-link: var(--color-accent);
+  --color-link-hover: color-mix(
+    in srgb,
+    var(--color-accent) 90%,
+    white
+  ); /* Slightly lighter on hover */
+  --color-button-primary-bg: var(--color-accent);
+  --color-button-primary-text: var(--color-text-on-accent);
+  --color-button-primary-hover-bg: var(--color-link-hover); /* Use the same hover as links */
 
-    /* Utilities (for rgba) - Optional */
-    --color-black-rgb: 19, 19, 19;
-    --color-white-rgb: 255, 255, 255;
-    --color-accent-rgb: 185, 81, 53;
+  /* Utilities (for rgba) - Optional */
+  --color-black-rgb: 19, 19, 19;
+  --color-white-rgb: 255, 255, 255;
+  --color-accent-rgb: 185, 81, 53;
 
-    /* --- Other Global Variables --- */
-    --font-family-base: Roboto, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-        "Helvetica Neue", sans-serif;
-    --font-family-heading: "Bebas Neue", Roboto, system-ui, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-        "Open Sans", "Helvetica Neue", sans-serif;
-    --transition-duration: 0.2s;
-    --border-radius: 0.375rem;
+  /* --- Other Global Variables --- */
+  --font-family-base:
+    Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font-family-heading:
+    "Bebas Neue", Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --transition-duration: 0.2s;
+  --border-radius: 0.375rem;
 
-    --slide-height: 50rem;
-    --slide-spacing: 0rem;
-    --slide-size: 80%;
+  --slide-height: 50rem;
+  --slide-spacing: 0rem;
+  --slide-size: 80%;
 }
 
 /*
@@ -103,13 +86,13 @@
  * 4. Prevents automatic text size adjustments on mobile (iOS).
  */
 html {
-    height: 100%; /* 1 */
-    scroll-behavior: smooth; /* 2 */
-    font-size: 62.5%; /* 3 - Option A */
-    /* font-size: 100%; */ /* 3 - Option B (comment the previous line if using this) */
-    -webkit-text-size-adjust: 100%; /* 4 */
-    text-size-adjust: 100%; /* 4 */
-    background-color: var(--color-bg-primary);
+  height: 100%; /* 1 */
+  scroll-behavior: smooth; /* 2 */
+  font-size: 62.5%; /* 3 - Option A */
+  /* font-size: 100%; */ /* 3 - Option B (comment the previous line if using this) */
+  -webkit-text-size-adjust: 100%; /* 4 */
+  text-size-adjust: 100%; /* 4 */
+  background-color: var(--color-bg-primary);
 }
 
 /*
@@ -125,15 +108,19 @@ html {
 * 8. (Optional) Prevents accidental horizontal overflow. Use with caution.
 */
 body {
-    min-height: 100vh; /* 1 */ /* vh is relative to the viewport, more robust than height: 100% here */
-    margin: 0; /* 2 */
-    font-family: var(--font-family-base), system-ui, -apple-system, sans-serif; /* 3 */
-    line-height: 1.6; /* 4 */
-    color: #333; /* 5 - A common dark gray */
-    background-color: #fff; /* 6 - Default white */
-    -webkit-font-smoothing: antialiased; /* 7 */
-    -moz-osx-font-smoothing: grayscale; /* 7 */
-    overflow-x: hidden; /* 8 - Optional, use with caution */
+  min-height: 100vh; /* 1 */ /* vh is relative to the viewport, more robust than height: 100% here */
+  margin: 0; /* 2 */
+  font-family:
+    var(--font-family-base),
+    system-ui,
+    -apple-system,
+    sans-serif; /* 3 */
+  line-height: 1.6; /* 4 */
+  color: #333; /* 5 - A common dark gray */
+  background-color: #fff; /* 6 - Default white */
+  -webkit-font-smoothing: antialiased; /* 7 */
+  -moz-osx-font-smoothing: grayscale; /* 7 */
+  overflow-x: hidden; /* 8 - Optional, use with caution */
 }
 
 /*
@@ -146,9 +133,9 @@ body {
 *,
 *::before,
 *::after {
-    box-sizing: border-box; /* 1 */
-    /* margin: 0; */ /* 2 - Uncomment if you need a more aggressive reset */
-    /* padding: 0; */ /* 2 - Uncomment if you need a more aggressive reset */
+  box-sizing: border-box; /* 1 */
+  /* margin: 0; */ /* 2 - Uncomment if you need a more aggressive reset */
+  /* padding: 0; */ /* 2 - Uncomment if you need a more aggressive reset */
 }
 
 /* Basic rules for responsive images */
@@ -157,9 +144,9 @@ picture,
 video,
 canvas,
 svg {
-    display: block; /* Prevents extra space below images */
-    max-width: 100%; /* Ensures they don't overflow their container */
-    height: auto; /* Maintains aspect ratio when scaling width */
+  display: block; /* Prevents extra space below images */
+  max-width: 100%; /* Ensures they don't overflow their container */
+  height: auto; /* Maintains aspect ratio when scaling width */
 }
 
 /* (Optional) Simplify font inheritance for inputs and buttons */
@@ -167,45 +154,43 @@ input,
 button,
 textarea,
 select {
-    font: inherit; /* Inherits font from the body or parent container */
+  font: inherit; /* Inherits font from the body or parent container */
 }
 
 a {
-    color: var(--color-link);
-    text-decoration: none; /* Optional: remove underline */
-    transition: color var(--transition-duration) ease;
+  color: var(--color-link);
+  text-decoration: none; /* Optional: remove underline */
+  transition: color var(--transition-duration) ease;
 }
 
 a:hover,
 a:focus {
-    color: var(--color-link-hover);
-    text-decoration: underline; /* Optional: add underline on hover/focus */
+  color: var(--color-link-hover);
+  text-decoration: underline; /* Optional: add underline on hover/focus */
 }
 
 /* Base styles for paragraphs (optionally use muted color) */
 p {
-    color: var(
-        --color-text-muted
-    ); /* Or adjust if primary text should be white */
-    /* If primary text on a dark background should be white: */
-    /* color: var(--color-text-base); */
-    /* And use a specific `.text-muted` class for secondary paragraphs */
-    margin-bottom: 1em;
+  color: var(--color-text-muted); /* Or adjust if primary text should be white */
+  /* If primary text on a dark background should be white: */
+  /* color: var(--color-text-base); */
+  /* And use a specific `.text-muted` class for secondary paragraphs */
+  margin-bottom: 1em;
 }
 
 /* Adjustment based on design: Primary text on dark background appears white */
 body p {
-    color: var(--color-text-base);
+  color: var(--color-text-base);
 }
 
 /* Class for text that should be muted */
 .text-muted {
-    color: var(--color-text-muted);
+  color: var(--color-text-muted);
 }
 
 /* Example for text inside cards (light background) */
 .card-content p {
-    color: var(--color-text-inverted-muted);
+  color: var(--color-text-inverted-muted);
 }
 
 /* Other global resets or base styles */
@@ -214,6 +199,6 @@ picture,
 video,
 canvas,
 svg {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
