@@ -2,8 +2,23 @@
   <img src="./public/assets/logo-vrume.png" alt="Logo Vrume" width="280"/>
 </p>
 
+<p align="center">
+  <strong>🚀 <a href="https://challenge-a-teamwork-2025-nine.vercel.app/" target="_blank">Live Demo / Ver Demo Online</a> 🚀</strong>
+</p>
 
 # Vrume – High-Impact Digital Advertising
+
+## Table of Contents
+- [Live Demo](#live-demo)
+- [Description](#description)
+- [Key Features](#key-features)
+- [Why Astro?](#why-astro)
+- [Applied Best Practices](#applied-best-practices)
+- [SEO Optimization](#seo-optimization)
+- [Image and Visual Resource Optimization](#image-and-visual-resource-optimization)
+- [Usage Example](#usage-example)
+- [Dependencies Used](#dependencies-used)
+- [Licenses](#licenses)
 
 > Technical test project for a job interview.
 > Demonstrates best practices, modern architecture, and professional use of Astro.
@@ -183,6 +198,18 @@ You can check the full license files in the `/public/fonts/` folder.
 
 # Vrume – Publicidad Digital de Alto Impacto
 
+## Tabla de Contenidos
+- [Ver Demo Online](#ver-demo-online)
+- [Descripción](#descripción)
+- [Características Destacadas](#características-destacadas)
+- [¿Por qué Astro?](#¿por-qué-astro)
+- [Buenas Prácticas Aplicadas](#buenas-prácticas-aplicadas)
+- [SEO Optimizado](#seo-optimizado)
+- [Optimización de Imágenes y Recursos Visuales](#optimización-de-imágenes-y-recursos-visuales)
+- [Ejemplo de Uso](#ejemplo-de-uso)
+- [Dependencias Utilizadas](#dependencias-utilizadas)
+- [Licencias](#licencias)
+
 > Proyecto de prueba técnica para entrevista laboral.
 > Demuestra buenas prácticas, arquitectura moderna y uso profesional de Astro.
 
@@ -358,4 +385,3 @@ pnpm run preview
   Copyright 2010 by Dharma Type
 
 Puedes consultar los archivos de licencia completos en la carpeta `/public/fonts/`.
-
